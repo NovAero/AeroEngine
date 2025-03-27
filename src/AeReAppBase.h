@@ -9,11 +9,10 @@ public:
 	AeReAppBase();
 	AeReAppBase(int height, int width, std::wstring windowName);
 
-	int OnInit();
-	bool OnStart();
-	bool OnUpdate(float delta);
-	void Draw();
-	void OnExit();
+	int Initialise();
+	bool Display();
+	bool MessageLoop();
+	void Exit();
 
 private:
 

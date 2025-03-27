@@ -19,15 +19,15 @@ LRESULT CALLBACK WindowProcess(HWND hwnd, UINT message, WPARAM wparam, LPARAM lp
 
 AeReAppBase::AeReAppBase()
 {
-	OnInit();
+	Initialise();
 }
 
 AeReAppBase::AeReAppBase(int height, int width, std::wstring windowName)
 {
-	OnInit();
+	Initialise();
 }
 
-int AeReAppBase::OnInit()
+int AeReAppBase::Initialise()
 {
 	//initalise globals
 	LoadString(HInstance(), IDS_PERGAMENAME, WindowTitle, MAX_NAME_STRING);
@@ -74,7 +74,7 @@ int AeReAppBase::OnInit()
 	return true;
 }
 
-bool AeReAppBase::OnStart()
+bool AeReAppBase::Display()
 {
 	//create and display window - reminder hWnd | handle (for) Window
 	hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW,
@@ -89,25 +89,19 @@ bool AeReAppBase::OnStart()
 	return true;
 }
 
-bool AeReAppBase::OnUpdate(float delta)
+bool AeReAppBase::MessageLoop()
 {
 	//Listen for messages
-	if (msg.message != WM_QUIT) {
+	while (msg.message != WM_QUIT) {
 		//if there are any window messages, process them
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		return true;
 	}
 	return false;
 }
 
-void AeReAppBase::Draw()
-{
-
-}
-
-void AeReAppBase::OnExit()
+void AeReAppBase::Exit()
 {
 }

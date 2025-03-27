@@ -1,16 +1,19 @@
 #include "pch.h"
 #include "AeReAppBase.h"
 
+/*----------------------------------------------*/
+/* Author: NovAero								*/
+/* License: MIT License							*/
+/*----------------------------------------------*/
+
 int CALLBACK WinMain(HINSTANCE , HINSTANCE , LPSTR , INT ) {
 	
 	AeReAppBase app;
 
-	if (app.OnStart()) {
-		while (app.OnUpdate(0.f)) {
-			app.Draw();
-		}
+	if (app.Display()) {
+		app.MessageLoop();
 	}
-	app.OnExit();
+	app.Exit();
 
 	return 1;
 }
