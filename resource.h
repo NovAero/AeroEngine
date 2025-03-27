@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by AeroRenderer_Dx12.rc
+// Used by AeroAppWindow.rc
 //
 #define IDI_MAINICON                    101
 #define IDS_PERGAMENAME                 102

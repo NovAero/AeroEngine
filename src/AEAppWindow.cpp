@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "AeReAppBase.h"
+#include "AEAppWindow.h"
 
 #pragma region WindowProcess
 
@@ -17,17 +17,17 @@ LRESULT CALLBACK WindowProcess(HWND hwnd, UINT message, WPARAM wparam, LPARAM lp
 
 #pragma endregion
 
-AeReAppBase::AeReAppBase()
+AEAppWindow::AEAppWindow()
 {
 	Initialise();
 }
 
-AeReAppBase::AeReAppBase(int height, int width, std::wstring windowName)
+AEAppWindow::AEAppWindow(int height, int width, std::wstring windowName)
 {
 	Initialise();
 }
 
-int AeReAppBase::Initialise()
+int AEAppWindow::Initialise()
 {
 	//initalise globals
 	LoadString(HInstance(), IDS_PERGAMENAME, WindowTitle, MAX_NAME_STRING);
@@ -74,7 +74,7 @@ int AeReAppBase::Initialise()
 	return true;
 }
 
-bool AeReAppBase::Display()
+bool AEAppWindow::Display()
 {
 	//create and display window - reminder hWnd | handle (for) Window
 	hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW,
@@ -89,7 +89,7 @@ bool AeReAppBase::Display()
 	return true;
 }
 
-bool AeReAppBase::MessageLoop()
+bool AEAppWindow::MessageLoop()
 {
 	//Listen for messages
 	while (msg.message != WM_QUIT) {
@@ -102,6 +102,6 @@ bool AeReAppBase::MessageLoop()
 	return false;
 }
 
-void AeReAppBase::Exit()
+void AEAppWindow::Exit()
 {
 }

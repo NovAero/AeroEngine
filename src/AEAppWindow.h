@@ -4,10 +4,10 @@
 
 using namespace Microsoft::WRL; //for ComPtr, memory management
 
-class AeReAppBase {
+class AEAppWindow {
 public:
-	AeReAppBase();
-	AeReAppBase(int height, int width, std::wstring windowName);
+	AEAppWindow();
+	AEAppWindow(int height, int width, std::wstring windowName);
 
 	int Initialise();
 	bool Display();

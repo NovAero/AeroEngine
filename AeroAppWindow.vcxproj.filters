@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\AEAppWindow.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WinMain.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <Filter>Source\PCH</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AEAppWindow.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>Source\PCH</Filter>
+    </ClInclude>
+    <ClInclude Include="src\aeredeps.h">
+      <Filter>Source\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{28664b56-d163-43b1-85e7-c3dbbef9a66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Icons">
+      <UniqueIdentifier>{8a0fbb37-9508-4964-ab4d-d34d33966402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{6e538d9a-7c0a-4e57-a955-18389ea8632d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Public">
+      <UniqueIdentifier>{f2d30da5-cbc2-4eb3-9b63-e0f1201a8b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Private">
+      <UniqueIdentifier>{c54a1855-4c80-4cd7-96f1-25bff2c0f6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\PCH">
+      <UniqueIdentifier>{4e0708c2-76a6-4432-aedf-2894c88bd3cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\ico\AeRe.ico">
+      <Filter>Resources\Icons</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AeroAppWindow.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

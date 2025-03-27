@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "AeReAppBase.h"
+#include "AEAppWindow.h"
 
 /*----------------------------------------------*/
 /* Author: NovAero								*/
@@ -8,7 +8,7 @@
 
 int CALLBACK WinMain(HINSTANCE , HINSTANCE , LPSTR , INT ) {
 	
-	AeReAppBase app;
+	AEAppWindow app;
 
 	if (app.Display()) {
 		app.MessageLoop();

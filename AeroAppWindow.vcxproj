@@ -16,6 +16,7 @@
     <ProjectGuid>{25a7b010-ddf1-4c7a-bec9-1ce88770fe1c}</ProjectGuid>
     <RootNamespace>AeroRendererDx12</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>AeroAppWindow</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -93,21 +94,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\AeReAppBase.cpp" />
+    <ClCompile Include="src\AEAppWindow.cpp" />
     <ClCompile Include="src\pch.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\AeReAppBase.h" />
+    <ClInclude Include="src\AEAppWindow.h" />
     <ClInclude Include="src\aeredeps.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AeroRenderer_Dx12.rc" />
+    <Image Include="assets\ico\AeRe.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\ico\AeRe.ico" />
+    <ResourceCompile Include="AeroAppWindow.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
