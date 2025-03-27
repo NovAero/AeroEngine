@@ -1,5 +1,4 @@
 #include <Windows.h>
-#include <d3d12.h>
 
 #define MAX_MAIN_STRING 256
 #define HInstance() GetModuleHandle(NULL)
