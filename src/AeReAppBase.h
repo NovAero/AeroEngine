@@ -5,9 +5,28 @@
 using namespace Microsoft::WRL; //for ComPtr, memory management
 
 class AeReAppBase {
-
+public:
 	AeReAppBase();
 	AeReAppBase(int height, int width, std::wstring windowName);
 
-	
+	int OnInit();
+	bool OnStart();
+	bool OnUpdate(float delta);
+	void Draw();
+	void OnExit();
+
+private:
+
+	WNDCLASSEX	wcex;
+
+	HWND		hWnd; //Window handle
+	MSG			msg = { 0 }; //Message listener
+
+	WCHAR		WindowClass[MAX_NAME_STRING];
+	WCHAR		WindowTitle[MAX_NAME_STRING];
+
+	int			WindowWidth;
+	int			WindowHeight;
+
+	HICON		hIcon;
 };

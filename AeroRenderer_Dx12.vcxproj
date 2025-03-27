@@ -93,6 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AeReAppBase.cpp" />
     <ClCompile Include="src\pch.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
   </ItemGroup>

@@ -30,6 +30,9 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>Source\PCH</Filter>
     </ClCompile>
+    <ClCompile Include="src\AeReAppBase.cpp">
+      <Filter>Source\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AeReAppBase.h">
