@@ -8,7 +8,8 @@
     <p>
         AeRe is a Direct3D 12 renderer, and is currently in early development. It is intended for use later in a custom game engine. <br>
     </p>
-    <h4>Changelists:</h4>
+    <h4>Changelist 1.0a:</h4>
+    <small>27/03/2025</small>
     <p>
         -Added Dx12 dependencies and empty Application class <i>"AeReAppBase"</i><br>
     </p>
