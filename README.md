@@ -13,9 +13,5 @@
     <p>
         -Refactored project from AeroRenderer to AeroEngine, combining deprecated AeroEngine to update to Dx12 and adjusted project structure <br>
         -Renamed AeroRenderer project to AeroAppWindow - Will be reused later in engine <br>
-        -Added Basic window displaying with icon and other resources to be updated later  
-    <small>27/03/2025</small>
-    <p>
-        -Added Dx12 dependencies and empty Application class <i>"AeReAppBase"</i><br>
-    </p>
+        -Added Basic window displaying with icon and other resources to be updated later
 </body>
