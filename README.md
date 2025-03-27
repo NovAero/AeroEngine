@@ -6,7 +6,7 @@
 <body>
     <h4>Overview:</h4>
     <p>
-        AeRe is a Direct3D 12 renderer, and is currently in early development. It is intended for use later in a custom game engine. <br>
+        AE is a Direct3D 12 game engine, and is currently in early development. <br>
     </p>
     <h4>Changelist 1.0.2a:</h4>
     <small>28/03/2025</small>
