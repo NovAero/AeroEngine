@@ -1,20 +1,36 @@
-#include <Windows.h>
+#include "pch.h"
 
-#define MAX_MAIN_STRING 256
-#define HInstance() GetModuleHandle(NULL)
+	WCHAR		WindowClass[MAX_MAIN_STRING];
+	WCHAR		WindowTitle[MAX_MAIN_STRING];
+	
+	int			WindowWidth;
+	int			WindowHeight;
+	
+	HICON		hIcon;
 
-WCHAR WindowClass[MAX_MAIN_STRING];
-WCHAR WindowTitle[MAX_MAIN_STRING];
+LRESULT CALLBACK WindowProcess(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) {
+
+	switch (message)
+	{
+	case  WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	}
+
+	return DefWindowProc(hwnd, message, wparam, lparam);
+}
 
 int CALLBACK WinMain(HINSTANCE , HINSTANCE , LPSTR , INT ) {
 
 	//Window class setup list
 	wcscpy_s(WindowClass, TEXT("AeroRenderer"));
 	wcscpy_s(WindowTitle, TEXT("AeroRenderer (AeRe) 1.0a"));
-
-	int WindowWidth = 1280;
-	int WindowHeight = 720;
 	
+	WindowWidth = 1280;
+	WindowHeight = 720;
+
+	hIcon = LoadIcon(HInstance(), MAKEINTRESOURCE(IDI_MAINICON));
+
 	WNDCLASSEX wcex;
 
 	//Size allocated for application
@@ -29,8 +45,8 @@ int CALLBACK WinMain(HINSTANCE , HINSTANCE , LPSTR , INT ) {
 	wcex.hbrBackground = (HBRUSH)GetStockObject(NULL_BRUSH);
 
 	//hIcon is top left of app window, hIxonSm is taskbar icon
-	wcex.hIcon = LoadIcon(0, IDI_APPLICATION);
-	wcex.hIconSm = LoadIcon(0, IDI_APPLICATION);
+	wcex.hIcon = hIcon;
+	wcex.hIconSm = hIcon;
 	
 	//class name
 	wcex.lpszClassName = WindowClass;
@@ -41,8 +57,8 @@ int CALLBACK WinMain(HINSTANCE , HINSTANCE , LPSTR , INT ) {
 	//current instance of the window
 	wcex.hInstance = HInstance();
 
-	//Process for application - set to default for now
-	wcex.lpfnWndProc = DefWindowProc;
+	//Process for application
+	wcex.lpfnWndProc = WindowProcess;
 
 	//End of class setup
 
