@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{c472b073-0a79-45b5-a2f3-5ea2442d0529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Private">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\Public">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source\Private\Platform">
+      <UniqueIdentifier>{57601fc5-fafb-4b66-897f-6e44a6201f6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Private\Platform\Win32">
+      <UniqueIdentifier>{d962ced0-3a10-4e05-b093-31b1937c5703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Public\Platform">
+      <UniqueIdentifier>{c5dc9777-26d9-4dca-a009-417c5ff52e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Public\Platform\Win32">
+      <UniqueIdentifier>{91962887-9ede-435b-aea0-53804375dbc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\PCH">
+      <UniqueIdentifier>{b02c7021-cfd5-4e81-9f28-df66e61e3e26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="engine\src\AeroEngine.cpp">
+      <Filter>Source\PCH</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Platform\_WIN32\IAEAppWindow.cpp">
+      <Filter>Source\Private\Platform\Win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="engine\src\AeroEngine.h">
+      <Filter>Source\PCH</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Platform\_WIN32\IAEAppWindow.h">
+      <Filter>Source\Public\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Platform\_WIN32\WinEntry.h">
+      <Filter>Source\Public\Platform\Win32</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
