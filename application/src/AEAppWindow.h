@@ -11,5 +11,6 @@ public:
 public:
 
 	VOID Initialise();
+
 	VOID Update();
 };

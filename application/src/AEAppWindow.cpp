@@ -20,5 +20,5 @@ VOID AEAppWindow::Initialise()
 
 VOID AEAppWindow::Update()
 {
-	return VOID();
+	MessageBox(0, L"Loop", 0, 0);
 }
