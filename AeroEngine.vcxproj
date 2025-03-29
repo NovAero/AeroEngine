@@ -44,12 +44,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)\$(ProjectName)\Build\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\$(ProjectName)\Intermediate\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\Build\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)\$(ProjectName)\Build\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\$(ProjectName)\Intermediate\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\Build\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Intermediate\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -60,8 +60,8 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>AeroEngine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)application\src;$(SolutionDir)engine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>AEPCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)AeroApp\src;$(SolutionDir)AeroEngine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -79,8 +79,8 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>AeroEngine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)application\src;$(SolutionDir)engine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>AEPCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)AeroApp\src;$(SolutionDir)AeroEngine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -90,19 +90,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="engine\src\AeroEngine.cpp" />
-    <ClCompile Include="engine\src\common\Logger.cpp" />
-    <ClCompile Include="engine\src\common\Time.cpp" />
-    <ClCompile Include="engine\src\Core\PerGameSettings.cpp" />
-    <ClCompile Include="engine\src\Platform\_WIN32\IAEAppWindow.cpp" />
+    <ClCompile Include="AeroEngine\src\AEPCH.cpp" />
+    <ClCompile Include="AeroEngine\src\common\Logger.cpp" />
+    <ClCompile Include="AeroEngine\src\common\Time.cpp" />
+    <ClCompile Include="AeroEngine\src\core\Core.cpp" />
+    <ClCompile Include="AeroEngine\src\core\CoreDefinitions.cpp" />
+    <ClCompile Include="AeroEngine\src\core\CoreMinimal.cpp" />
+    <ClCompile Include="AeroEngine\src\core\PerGameSettings.cpp" />
+    <ClCompile Include="AeroEngine\src\engine\AeroEngine.cpp" />
+    <ClCompile Include="AeroEngine\src\engine\Simulation.cpp" />
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\IAEAppWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\src\AeroEngine.h" />
-    <ClInclude Include="engine\src\common\Logger.h" />
-    <ClInclude Include="engine\src\common\Time.h" />
-    <ClInclude Include="engine\src\Core\PerGameSettings.h" />
-    <ClInclude Include="engine\src\Platform\_WIN32\IAEAppWindow.h" />
-    <ClInclude Include="engine\src\Platform\_WIN32\WinEntry.h" />
+    <ClInclude Include="AeroEngine\src\AEPCH.h" />
+    <ClInclude Include="AeroEngine\src\common\Logger.h" />
+    <ClInclude Include="AeroEngine\src\common\Time.h" />
+    <ClInclude Include="AeroEngine\src\core\Core.h" />
+    <ClInclude Include="AeroEngine\src\core\CoreDefinitions.h" />
+    <ClInclude Include="AeroEngine\src\core\CoreMinimal.h" />
+    <ClInclude Include="AeroEngine\src\core\PerGameSettings.h" />
+    <ClInclude Include="AeroEngine\src\engine\AeroEngine.h" />
+    <ClInclude Include="AeroEngine\src\engine\Simulation.h" />
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\IAEAppWindow.h" />
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\WinEntry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

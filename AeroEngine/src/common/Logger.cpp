@@ -1,4 +1,4 @@
-#include "AeroEngine.h"
+#include "AEPCH.h"
 #include <fstream>
 #include <ShlObj.h>
 #include <cstdio>
@@ -38,7 +38,7 @@ VOID Logger::PrintLog(const WCHAR* fmt, ...)
 		OutputDebugString(s.c_str());
 	}
 	else {
-		MessageBox(NULL, L"Unable to open log file.", L"Log Error", MB_OK);
+		MessageBox(NULL, L"Unable to open log file. &PrintLog", L"Log Error", MB_OK);
 	}
 }
 
@@ -67,7 +67,7 @@ std::wstring Logger::LogFile()
 
 VOID Logger::PrintDebugSeperator()
 {
-	std::wstring s = L"\n";
+	std::wstring s = L"\n--------------------------------------------------------------";
 
 #ifdef _DEBUG
 	std::wfstream outFile;
@@ -78,10 +78,9 @@ VOID Logger::PrintDebugSeperator()
 		outFile.close();
 	}
 	else {
-		MessageBox(NULL, L"Unable to open log file.", L"Log Error", MB_OK);
+		MessageBox(NULL, L"Unable to open log file. PrintDebugSeparator", L"Log Error", MB_OK);
 	}
 #endif
-
 }
 
 BOOL Logger::IsMTailRunning()
