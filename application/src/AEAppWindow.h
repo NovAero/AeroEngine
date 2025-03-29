@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Platform/_Win32/IAEAppWindow.h"
+#include "platform/_Win32/IAEAppWindow.h"
 
 class AEAppWindow : public IAEAppWindow {
 public:
@@ -9,6 +9,8 @@ public:
 	~AEAppWindow();
 
 public:
+
+	VOID SetupPGS();
 
 	VOID Initialise();
 

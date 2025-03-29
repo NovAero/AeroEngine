@@ -13,12 +13,20 @@ AEAppWindow::~AEAppWindow()
 {
 }
 
+VOID AEAppWindow::SetupPGS()
+{
+	PerGameSettings::SetGameName(IDS_PERGAMENAME);
+	PerGameSettings::SetShortName(IDS_SHORTNAME);
+	PerGameSettings::SetMainIcon(IDI_MAINICON);
+
+}
+
 VOID AEAppWindow::Initialise()
 {
-	MessageBox(0, L"I have loaded", 0, 0);
+	Logger::PrintLog(L"I have loaded %s, thank you", L"AeroEngine");
 }
 
 VOID AEAppWindow::Update()
 {
-	MessageBox(0, L"Loop", 0, 0);
+
 }

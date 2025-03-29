@@ -31,6 +31,18 @@
     <Filter Include="Source\PCH">
       <UniqueIdentifier>{b02c7021-cfd5-4e81-9f28-df66e61e3e26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Private\Common">
+      <UniqueIdentifier>{ca528d0f-05d9-42bb-9b36-07ead2b9c781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Public\Common">
+      <UniqueIdentifier>{fcefa210-5e4f-492d-901b-a185a40810ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Private\Core">
+      <UniqueIdentifier>{3b7e8eff-4fe9-4175-a879-8ec5c3e88f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Public\Core">
+      <UniqueIdentifier>{e3dcede6-d928-4a08-967c-ed82da91fc7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\src\AeroEngine.cpp">
@@ -38,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="engine\src\Platform\_WIN32\IAEAppWindow.cpp">
       <Filter>Source\Private\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\common\Logger.cpp">
+      <Filter>Source\Private\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Core\PerGameSettings.cpp">
+      <Filter>Source\Private\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="engine\src\Platform\_WIN32\WinEntry.h">
       <Filter>Source\Public\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\common\Logger.h">
+      <Filter>Source\Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Core\PerGameSettings.h">
+      <Filter>Source\Private\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,3 +6,5 @@
 #define HInstance() GetModuleHandle(NULL)
 
 #include "AeroEngine.h"
+
+#include "common/Logger.h"
