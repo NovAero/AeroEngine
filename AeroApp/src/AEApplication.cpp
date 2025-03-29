@@ -1,19 +1,19 @@
 #include "pch.h"
-#include "AEAppWindow.h"
+#include "AEApplication.h"
 #include "Platform/_WIN32/WinEntry.h"
 
 //Interfacing for entry point... Magic!!
-ENTRYAPP(AEAppWindow)
+ENTRYAPP(AEApplication)
 
-AEAppWindow::AEAppWindow()
+AEApplication::AEApplication()
 {
 }
 
-AEAppWindow::~AEAppWindow()
+AEApplication::~AEApplication()
 {
 }
 
-VOID AEAppWindow::SetupPGS()
+VOID AEApplication::SetupPGS()
 {
 	PerGameSettings::SetGameName(IDS_PERGAMENAME);
 	PerGameSettings::SetShortName(IDS_SHORTNAME);
@@ -21,7 +21,7 @@ VOID AEAppWindow::SetupPGS()
 
 }
 
-VOID AEAppWindow::Initialise()
+VOID AEApplication::Initialise()
 {
 	Logger::PrintLog(L"Application Starting...\n");
 	Logger::PrintLog(L"GameName: %s\n", PerGameSettings::GameName());
@@ -31,6 +31,6 @@ VOID AEAppWindow::Initialise()
 
 }
 
-VOID AEAppWindow::Update()
+VOID AEApplication::Update()
 {
 }

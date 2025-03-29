@@ -1,10 +1,10 @@
 #pragma once
 
-#include "platform/_Win32/IAEAppWindow.h"
+#include "platform/_Win32/IAEApplication.h"
 
-class AEAppWindow : public IAEAppWindow {
+class AEApplication : public IAEApplication {
 public:
-	AEAppWindow();
+	AEApplication();
 
 	~AEAppWindow();
 

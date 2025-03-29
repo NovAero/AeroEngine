@@ -4,7 +4,7 @@
     <ClCompile Include="AeroApp\src\pch.cpp">
       <Filter>Source\PCH</Filter>
     </ClCompile>
-    <ClCompile Include="AeroApp\src\AEAppWindow.cpp">
+    <ClCompile Include="AeroApp\src\AEApplication.cpp">
       <Filter>Source\Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -15,7 +15,7 @@
     <ClInclude Include="AeroApp\src\pch.h">
       <Filter>Source\PCH</Filter>
     </ClInclude>
-    <ClInclude Include="AeroApp\src\AEAppWindow.h">
+    <ClInclude Include="AeroApp\src\AEApplication.h">
       <Filter>Source\Public</Filter>
     </ClInclude>
   </ItemGroup>

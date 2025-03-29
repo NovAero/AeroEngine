@@ -102,11 +102,11 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AeroApp\src\AEAppWindow.cpp" />
+    <ClCompile Include="AeroApp\src\AEApplication.cpp" />
     <ClCompile Include="AeroApp\src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AeroApp\src\AEAppWindow.h" />
+    <ClInclude Include="AeroApp\src\AEApplication.h" />
     <ClInclude Include="AeroApp\src\pch.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

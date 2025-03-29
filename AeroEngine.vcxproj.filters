@@ -84,7 +84,7 @@
     <ClCompile Include="AeroEngine\src\common\Time.cpp">
       <Filter>Source\Private\Common</Filter>
     </ClCompile>
-    <ClCompile Include="AeroEngine\src\platform\_WIN32\IAEAppWindow.cpp">
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\IAEApplication.cpp">
       <Filter>Source\Private\Platform\Win32</Filter>
     </ClCompile>
     <ClCompile Include="AeroEngine\src\engine\Simulation.cpp">
@@ -119,7 +119,7 @@
     <ClInclude Include="AeroEngine\src\platform\_WIN32\WinEntry.h">
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="AeroEngine\src\platform\_WIN32\IAEAppWindow.h">
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\IAEApplication.h">
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
     <ClInclude Include="AeroEngine\src\engine\AeroEngine.h">

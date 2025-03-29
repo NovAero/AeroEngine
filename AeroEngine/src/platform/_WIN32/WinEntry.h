@@ -1,7 +1,7 @@
 #include "AEPCH.h"
 #include "IAEAppWindow.h"
 
-extern IAEAppWindow* EntryApplication();
+extern IAEApplication* EntryApplication();
 
 INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
