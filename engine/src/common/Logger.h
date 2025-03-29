@@ -17,4 +17,10 @@ public:
 
 	static std::wstring LogDirectory();
 	static std::wstring LogFile();
+
+	static VOID PrintDebugSeperator();
+
+	static BOOL IsMTailRunning();
+
+	static VOID StartMTail();
 };

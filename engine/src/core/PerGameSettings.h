@@ -22,6 +22,8 @@ public:
 
 	static HICON MainIcon() { return pgs_inst->m_MainIcon; }
 	static VOID SetMainIcon(UINT id) { LoadIcon(HInstance(), MAKEINTRESOURCE(id)); }
+	
+	static WCHAR* BootTime() { return pgs_inst->m_BootTime; }
 
 private:
 

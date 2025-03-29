@@ -92,12 +92,14 @@
   <ItemGroup>
     <ClCompile Include="engine\src\AeroEngine.cpp" />
     <ClCompile Include="engine\src\common\Logger.cpp" />
+    <ClCompile Include="engine\src\common\Time.cpp" />
     <ClCompile Include="engine\src\Core\PerGameSettings.cpp" />
     <ClCompile Include="engine\src\Platform\_WIN32\IAEAppWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\src\AeroEngine.h" />
     <ClInclude Include="engine\src\common\Logger.h" />
+    <ClInclude Include="engine\src\common\Time.h" />
     <ClInclude Include="engine\src\Core\PerGameSettings.h" />
     <ClInclude Include="engine\src\Platform\_WIN32\IAEAppWindow.h" />
     <ClInclude Include="engine\src\Platform\_WIN32\WinEntry.h" />

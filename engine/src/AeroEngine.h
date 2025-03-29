@@ -16,4 +16,5 @@
 #define MAX_NAME_STRING 256
 
 #include "common/Logger.h"
+#include "common/Time.h"
 #include "core/PerGameSettings.h"

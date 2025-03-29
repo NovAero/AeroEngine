@@ -23,10 +23,16 @@ VOID AEAppWindow::SetupPGS()
 
 VOID AEAppWindow::Initialise()
 {
-	Logger::PrintLog(L"I have loaded %s, thank you", L"AeroEngine");
+	Logger::PrintDebugSeperator();
+	Logger::PrintLog(L"Application Starting...\n");
+	Logger::PrintLog(L"GameName: %s\n", PerGameSettings::GameName());
+	Logger::PrintLog(L"Boot Time: %s\n", PerGameSettings::BootTime());
+	Logger::PrintDebugSeperator();
+
+	Logger::StartMTail();
+
 }
 
 VOID AEAppWindow::Update()
 {
-
 }
