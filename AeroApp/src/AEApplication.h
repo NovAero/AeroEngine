@@ -1,12 +1,12 @@
 #pragma once
 
-#include "platform/_Win32/IAEApplication.h"
+#include "engine/Simulation.h"
 
-class AEApplication : public IAEApplication {
+class AEApplication : public AE::Simulation{
 public:
 	AEApplication();
 
-	~AEAppWindow();
+	~AEApplication();
 
 public:
 

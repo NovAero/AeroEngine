@@ -1,7 +1,8 @@
 #include "AEPCH.h"
-#include "IAEAppWindow.h"
+#include "IAEApplication.h"
+#include "common/CmdLineArgs.h"
 
-extern IAEApplication* EntryApplication();
+extern Win32::IAEApplication* EntryApplication();
 
 INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
@@ -10,8 +11,9 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	PerGameSettings settings;
 	EntryApp->SetupPGS();
 
-	Logger logger;
+	CmdLineArgs::ReadArgs();
 
+	Logger logger;
 	EntryApp->Initialise();
 
 	MSG msg = { 0 };

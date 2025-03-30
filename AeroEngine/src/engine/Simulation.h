@@ -1,11 +1,15 @@
 #pragma once
 
-namespace AeroEngine {
+#include "platform/_WIN32/IAEApplication.h"
 
-	class AERO_API Simulation {
+namespace AE {
+
+	class AERO_API Simulation : public Win32::IAEApplication {
 	public:
 		Simulation();
 		~Simulation();
 		
+
+
 	};
 }

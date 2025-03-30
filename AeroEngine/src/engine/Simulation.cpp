@@ -1,10 +1,13 @@
 #include "AEPCH.h"
 #include "Simulation.h"
 
-AeroEngine::Simulation::Simulation()
-{
-}
+namespace AE {
 
-AeroEngine::Simulation::~Simulation()
-{
+	Simulation::Simulation()
+	{
+	}
+
+	Simulation::~Simulation()
+	{
+	}
 }

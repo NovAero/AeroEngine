@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AeroEngine\src\AEPCH.cpp" />
+    <ClCompile Include="AeroEngine\src\common\CmdLineArgs.cpp" />
     <ClCompile Include="AeroEngine\src\common\Logger.cpp" />
     <ClCompile Include="AeroEngine\src\common\Time.cpp" />
     <ClCompile Include="AeroEngine\src\core\Core.cpp" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h" />
+    <ClInclude Include="AeroEngine\src\common\CmdLineArgs.h" />
     <ClInclude Include="AeroEngine\src\common\Logger.h" />
     <ClInclude Include="AeroEngine\src\common\Time.h" />
     <ClInclude Include="AeroEngine\src\core\Core.h" />
