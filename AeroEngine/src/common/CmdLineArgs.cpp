@@ -28,5 +28,14 @@ VOID CmdLineArgs::ReadArgument(const WCHAR* argument)
 	if (wcscmp(argument, L"mtail") == 0) {
 		Logger::StartMTail();
 	}
+	if (wcscmp(argument, L"debug") == 0) {
+		Engine::SetMode(Engine::EngineMode::DEBUG);
+	}
+	if (wcscmp(argument, L"editor") == 0) {
+		Engine::SetMode(Engine::EngineMode::EDITOR);
+	}
+	if (wcscmp(argument, L"server") == 0) {
+		Engine::SetMode(Engine::EngineMode::SERVER);
+	}
 
 }
