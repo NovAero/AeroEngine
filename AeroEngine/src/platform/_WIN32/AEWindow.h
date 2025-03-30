@@ -16,8 +16,6 @@ namespace Win32 {
 
 	private:
 
-		HWND		hWnd; //Window handle
-
 		INT			m_Width;
 		INT			m_Height;
 

@@ -28,7 +28,7 @@ namespace Win32 {
 		
 		//Cursor and background
 		wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wcex.hbrBackground = (HBRUSH)GetStockObject(NULL_BRUSH);
+		wcex.hbrBackground = (HBRUSH)(CreateSolidBrush(RGB(46,46,46)));
 		
 		//hIcon is top left of app window, hIxonSm is taskbar icon
 		wcex.hIcon = m_hIcon;
