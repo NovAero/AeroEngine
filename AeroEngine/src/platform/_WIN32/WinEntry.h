@@ -1,6 +1,12 @@
 #include "AEPCH.h"
 #include "IAEApplication.h"
 #include "common/CmdLineArgs.h"
+#include "engine/SplashScreen.h"
+
+/*----------------------------------------------*/
+/* Author: NovAero								*/
+/* License: MIT License							*/
+/*----------------------------------------------*/
 
 extern Win32::IAEApplication* EntryApplication();
 
@@ -15,6 +21,8 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	Logger logger;
 	EntryApp->Initialise();
+
+	SplashScreen::Open();
 
 	MSG msg = { 0 };
 

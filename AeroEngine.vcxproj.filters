@@ -96,6 +96,15 @@
     <ClCompile Include="AeroEngine\src\common\CmdLineArgs.cpp">
       <Filter>Source\Private\Common</Filter>
     </ClCompile>
+    <ClCompile Include="AeroEngine\src\engine\SplashScreen.cpp">
+      <Filter>Source\Engine\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\AEWindow.cpp">
+      <Filter>Source\Private\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\SubObject.cpp">
+      <Filter>Source\Private\Platform\Win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h">
@@ -133,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="AeroEngine\src\common\CmdLineArgs.h">
       <Filter>Source\Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\engine\SplashScreen.h">
+      <Filter>Source\Engine\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\SubObject.h">
+      <Filter>Source\Public\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\AEWindow.h">
+      <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

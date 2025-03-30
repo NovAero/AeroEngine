@@ -100,7 +100,10 @@
     <ClCompile Include="AeroEngine\src\core\PerGameSettings.cpp" />
     <ClCompile Include="AeroEngine\src\engine\AeroEngine.cpp" />
     <ClCompile Include="AeroEngine\src\engine\Simulation.cpp" />
+    <ClCompile Include="AeroEngine\src\engine\SplashScreen.cpp" />
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\AEWindow.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\IAEApplication.cpp" />
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\SubObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h" />
@@ -113,7 +116,10 @@
     <ClInclude Include="AeroEngine\src\core\PerGameSettings.h" />
     <ClInclude Include="AeroEngine\src\engine\AeroEngine.h" />
     <ClInclude Include="AeroEngine\src\engine\Simulation.h" />
+    <ClInclude Include="AeroEngine\src\engine\SplashScreen.h" />
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\AEWindow.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\IAEApplication.h" />
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\SubObject.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\WinEntry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
