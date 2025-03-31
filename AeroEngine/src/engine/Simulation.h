@@ -9,6 +9,7 @@ namespace AE {
 		Simulation();
 		~Simulation();
 		
+		virtual VOID PreInitialise() override;
 
 
 	};

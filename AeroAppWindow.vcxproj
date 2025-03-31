@@ -63,7 +63,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>AEAppPCH.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)AeroApp\src;$(SolutionDir)AeroEngine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -88,7 +88,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>AEAppPCH.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)AeroApp\src;$(SolutionDir)AeroEngine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -102,12 +102,10 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AeroApp\src\AEApplication.cpp" />
-    <ClCompile Include="AeroApp\src\pch.cpp" />
+    <ClCompile Include="AeroApp\src\AEAppPCH.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AeroApp\src\AEApplication.h" />
-    <ClInclude Include="AeroApp\src\pch.h" />
+    <ClInclude Include="AeroApp\src\AEAppPCH.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

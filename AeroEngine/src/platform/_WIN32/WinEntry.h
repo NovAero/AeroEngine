@@ -20,12 +20,12 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	CmdLineArgs::ReadArgs();
 
 	Logger logger;
-	EntryApp->Initialise();
+	
+	EntryApp->PreInitialise();
 
-	SplashScreen::Open();
-
+	//SplashScreen::AddMessage(L"Starting AEApplication...");
+	
 	MSG msg = { 0 };
-
 	while (msg.message != WM_QUIT) {
 		//if there are any window messages, process them
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {

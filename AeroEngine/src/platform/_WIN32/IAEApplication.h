@@ -13,6 +13,7 @@ namespace Win32 {
 
 		virtual VOID SetupPGS() = 0;
 
+		virtual VOID PreInitialise() = 0;
 		virtual VOID Initialise() = 0;
 
 		virtual VOID Update() = 0;

@@ -105,6 +105,9 @@
     <ClCompile Include="AeroEngine\src\platform\_WIN32\SubObject.cpp">
       <Filter>Source\Private\Platform\Win32</Filter>
     </ClCompile>
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\Win32Utils.cpp">
+      <Filter>Source\Private\Platform\Win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h">
@@ -150,6 +153,9 @@
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
     <ClInclude Include="AeroEngine\src\platform\_WIN32\AEWindow.h">
+      <Filter>Source\Public\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\Win32Utils.h">
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
   </ItemGroup>
