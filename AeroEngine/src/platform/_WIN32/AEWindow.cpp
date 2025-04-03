@@ -187,7 +187,7 @@ namespace Win32 {
 				
 				switch (button->Command) {
 					case CB_CLOSE:		{ SendMessage(Handle(), WM_CLOSE, 0, 0);		}	break;
-					case CB_MINIMISE:	{ SendMessage(Handle(), SW_MINIMIZE, 0, 0);		}	break;
+					case CB_MINIMISE:	{ ShowWindow(Handle(), SW_MINIMIZE);			}	break;
 					case CB_MAXIMISE:	{ Utils::MaximiseWindow(Handle());				}	break;
 				}
 			}
