@@ -1,17 +1,20 @@
 <head> 
     <h1>AeroEngine (AE)</h1> 
-    <h3><i>Version 1.0.2a</i></h3>
+    <h3><i>Version 1.0.8a</i></h3>
 </head>
 
 <body>
     <h4>Overview:</h4>
     <p>
-        AE is a Direct3D 12 game engine, and is currently in early development. <br>
+        AeroEngine is a Direct3D 12 game engine, and is currently in early development.<br>
     </p>
-    <h4>Changelist 1.0.2a:</h4>
-    <small>28/03/2025</small>
+    <h4>Changelist 1.0.8a:</h4>
+    <small>3/04/2025</small>
     <p>
-        -Refactored project from AeroRenderer to AeroEngine, combining deprecated AeroEngine to update to Dx12 and adjusted project structure <br>
-        -Renamed AeroRenderer project to AeroAppWindow - Will be reused later in engine <br>
-        -Added Basic window displaying with icon and other resources to be updated later
+        -Added w32Caption for caption button handling<br>
+        -Added more case definitions to AEWindow::MessageHandler to draw a custom window<br>
+        -Added more Win32Utils functions for window utility<br>
+        -Fixed bug with AEWindow caused by forgetting to add m_Type(type) in initialiser list<br>
+        -Added pragma ignore for error C4251 in CorMinimal.h<br>
+    </p>
 </body>
