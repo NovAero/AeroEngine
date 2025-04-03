@@ -1,7 +1,5 @@
 #pragma once
 
-#include "platform/_WIN32/AEWindow.h"
-
 namespace SplashScreen {
 
 	VOID AERO_API Open();

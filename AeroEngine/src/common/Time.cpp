@@ -4,7 +4,7 @@
 #include <iomanip>
 #include "Time.h"
 
-std::wstring AERO_API Time::GetTime(BOOL stripped)
+WSTRING AERO_API Time::GetTime(BOOL stripped)
 {
 	time_t now = time(0);
 	tm ltm;
@@ -12,10 +12,10 @@ std::wstring AERO_API Time::GetTime(BOOL stripped)
 	std::wstringstream wss;
 	wss << std::put_time(&ltm, L"%T");
 
-	std::wstring timeString = wss.str();
+	WSTRING timeString = wss.str();
 
 	if (stripped) {
-		std::wstring chars = L":";
+		WSTRING chars = L":";
 		for (WCHAR c : chars) {
 			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
 		}
@@ -24,7 +24,7 @@ std::wstring AERO_API Time::GetTime(BOOL stripped)
 	return timeString;
 }
 
-std::wstring AERO_API Time::GetDate(BOOL stripped)
+WSTRING AERO_API Time::GetDate(BOOL stripped)
 {
 	time_t now = time(0);
 	tm ltm;
@@ -32,10 +32,10 @@ std::wstring AERO_API Time::GetDate(BOOL stripped)
 	std::wstringstream wss;
 	wss << std::put_time(&ltm, L"%d/%m/%y/");
 
-	std::wstring timeString = wss.str();
+	WSTRING timeString = wss.str();
 
 	if (stripped) {
-		std::wstring chars = L"/";
+		WSTRING chars = L"/";
 		for (WCHAR c : chars) {
 			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
 		}
@@ -44,12 +44,12 @@ std::wstring AERO_API Time::GetDate(BOOL stripped)
 	return timeString;
 }
 
-std::wstring AERO_API Time::GetDateTimeString(BOOL stripped)
+WSTRING AERO_API Time::GetDateTimeString(BOOL stripped)
 {
-	std::wstring timeString = GetDate(stripped) + L" " + GetTime(stripped);
+	WSTRING timeString = GetDate(stripped) + L" " + GetTime(stripped);
 
 	if (stripped) {
-		std::wstring chars = L" ";
+		WSTRING chars = L" ";
 		for (WCHAR c : chars) {
 			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
 		}

@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 class AERO_API AeroEngine;
 
@@ -18,7 +17,7 @@ namespace Engine {
 	VOID AERO_API SetMode(EngineMode mode);
 	EngineMode AERO_API GetMode();
 
-	std::wstring AERO_API EngineModeToString();
+	WSTRING AERO_API EngineModeToString();
 
 }
 

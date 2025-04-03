@@ -1,8 +1,6 @@
 #include "AEPCH.h"
 #include "SplashScreen.h"
 
-#include "platform/_WIN32/Win32Utils.h"
-
 namespace SplashScreen {
 	
 #define WM_OUTPUTMESSAGE (WM_USER + 0x0001)
@@ -24,16 +22,19 @@ namespace SplashScreen {
 
 	VOID AddMessage(const WCHAR* message)
 	{
-		PostMessage(m_SplashWindow->GetHandle(), WM_OUTPUTMESSAGE, (WPARAM)message, 0);
+		PostMessage(m_SplashWindow->Handle(), WM_OUTPUTMESSAGE, (WPARAM)message, 0);
 	}
 }
 
 SplashWindow::SplashWindow()
-	: Win32::AEWindow(L"SplashScreen", L"SplashScreen", NULL, 500, 600)
+	: Win32::AEWindow(L"SplashScreen", NULL, Win32::AEWindowType::POPUP)
 {
 	wcscpy_s(m_OutputMessage, L"SplashScreen starting...");
+
 	Win32::AEWindow::RegisterNewClass();
+	Size(500, 600);
 	Win32::AEWindow::Initialise();
+
 }
 
 SplashWindow::~SplashWindow()
@@ -47,7 +48,7 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPA
 	case WM_PAINT:
 	{
 		HBITMAP hbitmap;
-		HDC hdc, hwendc;
+		HDC hdc;
 		PAINTSTRUCT ps;
 
 		hdc = BeginPaint(hwnd, &ps);
@@ -58,14 +59,14 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPA
 		Win32::Utils::AddBitmap(PerGameSettings::SplashURL(), hdc);
 
 		if (Engine::GetMode() != Engine::EngineMode::RELEASE) {
-			std::wstring engineModeText = Engine::EngineModeToString() + L" Mode";
+			WSTRING engineModeText = Engine::EngineModeToString() + L" Mode";
 			SetTextAlign(hdc, TA_RIGHT);
-			TextOut(hdc, m_Width - 15, 15, engineModeText.c_str(), wcslen(engineModeText.c_str()));
+			TextOut(hdc, Size().cx - 15, 15, engineModeText.c_str(), wcslen(engineModeText.c_str()));
 		}
 
 		SetTextAlign(hdc, TA_CENTER);
 
-		TextOut(hdc, m_Width / 2, m_Height - 30, m_OutputMessage, wcslen(m_OutputMessage));
+		TextOut(hdc, Size().cx / 2, Size().cy - 30, m_OutputMessage, wcslen(m_OutputMessage));
 		EndPaint(hwnd, &ps);
 	}
 	break;
@@ -73,10 +74,10 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPA
 	{
 		WCHAR* msg = (WCHAR*)wParam;
 		wcscpy_s(m_OutputMessage, msg);
-		RedrawWindow(GetHandle(), NULL, NULL, RDW_INVALIDATE);
+		RedrawWindow();
 		return 0;
 	}
 	}
 
-	return CommonMessageHandler(hwnd, message, wParam, lParam);
+	return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
 }

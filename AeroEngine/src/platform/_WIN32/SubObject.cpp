@@ -3,7 +3,7 @@
 
 namespace Win32 {
 
-	SubObject::SubObject(std::wstring className, std::wstring classTitle, HICON icon)
+	SubObject::SubObject(WSTRING className, WSTRING classTitle, HICON icon)
 		: m_Class(className), m_Title(classTitle), m_hIcon(icon)
 	{
 
@@ -55,9 +55,14 @@ namespace Win32 {
 		if (msg == WM_NCCREATE)
 		{
 			const CREATESTRUCTW* const pCreate = reinterpret_cast<CREATESTRUCTW*>(lParam);
+
 			Win32::SubObject* const pWnd = static_cast<Win32::SubObject*>(pCreate->lpCreateParams);
+
 			SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
 			SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&Win32::SubObject::AssignMessageHandler));
+
+			pWnd->Handle(hWnd);
+
 			return pWnd->MessageHandler(hWnd, msg, wParam, lParam);
 		}
 		return DefWindowProc(hWnd, msg, wParam, lParam);
@@ -69,7 +74,7 @@ namespace Win32 {
 		return pWnd->MessageHandler(hWnd, msg, wParam, lParam);
 	}
 
-	LRESULT SubObject::CommonMessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+	LRESULT SubObject::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		return DefWindowProc(hwnd, message, wParam, lParam);
 	}

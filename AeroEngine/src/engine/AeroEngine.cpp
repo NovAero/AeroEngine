@@ -12,7 +12,7 @@ namespace Engine {
 		return g_AeroEngine.GetEngineMode();
 	}
 
-	std::wstring AERO_API EngineModeToString()
+	WSTRING AERO_API EngineModeToString()
 	{
 		switch (g_AeroEngine.GetEngineMode())
 		{
