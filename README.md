@@ -14,8 +14,8 @@
     </p>
     <h4>Notes:</h4>
     <p>
-        Solution will be refactored to remove old window display code from Win32 API to make use of<br>
-        new project for structure and ease of access purposes, as well as a learning tool for increasing<br>
+        Solution will be refactored to remove old window display code from Win32 API to make use of
+        new project for structure and ease of access purposes, as well as a learning tool for increasing
         the languages I am capable to use.
     </p>
 </body>
