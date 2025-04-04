@@ -186,9 +186,9 @@ namespace Win32 {
 			if (button->Rect.left < pt.x && button->Rect.right > pt.x && button->Rect.top < pt.y && button->Rect.bottom > pt.y) {
 				
 				switch (button->Command) {
-					case CB_CLOSE:		{ SendMessage(Handle(), WM_CLOSE, 0, 0);		}	break;
-					case CB_MINIMISE:	{ ShowWindow(Handle(), SW_MINIMIZE);			}	break;
-					case CB_MAXIMISE:	{ Utils::MaximiseWindow(Handle());				}	break;
+					case CB_CLOSE:		{ SendMessage(Handle(), WM_CLOSE, 0, 0);				}	break;
+					case CB_MINIMISE:	{ ShowWindow(Handle(), SW_MINIMIZE);					}	break;
+					case CB_MAXIMISE:	{ Utils::MaximiseWindow(Handle());						}	break;
 				}
 			}
 		}

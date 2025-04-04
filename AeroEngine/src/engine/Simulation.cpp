@@ -20,19 +20,25 @@ namespace AE {
 		Logger::PrintLog(L"Boot Time: %s\n", PerGameSettings::BootTime());
 		Logger::PrintLog(L"Engine Mode: %s\n", Engine::EngineModeToString().c_str());
 
-		SplashScreen::Open();
+		//SplashScreen::Open();
 
 		Win32::AEWindow::RegisterNewClass();
 		Win32::AEWindow::Initialise();
+	}
+
+	VOID Simulation::Update()
+	{
+		return VOID();
 	}
 
 	LRESULT Simulation::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		switch (message)
 		{
-		default:
-			break;
+		case WM_CLOSE: { PostQuitMessage(0); } break;
 		}
 		return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
+		
+		
 	}
 }

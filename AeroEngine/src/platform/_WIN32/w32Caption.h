@@ -5,7 +5,7 @@
 #define			CB_MAXIMISE		 2
 
 namespace Win32 {
-	class Caption {
+	class AERO_API Caption {
 
 	public:
 		struct CaptionButton {

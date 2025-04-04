@@ -8,8 +8,11 @@ namespace AE {
 		~Simulation();
 		
 		virtual VOID PreInitialise() override;
+		virtual VOID Update() override;
 
 		virtual LRESULT MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) override;
+
+	public: //Direct3D 12
 
 	};
 }
