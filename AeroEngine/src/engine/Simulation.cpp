@@ -30,8 +30,7 @@ namespace AE {
 	{
 		switch (message)
 		{
-		default:
-			break;
+		case WM_DESTROY: { PostQuitMessage(0); } break;
 		}
 		return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
 	}
