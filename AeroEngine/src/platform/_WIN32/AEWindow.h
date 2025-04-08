@@ -33,6 +33,7 @@ namespace Win32 {
 	protected:
 
 		SIZE				m_Size;
+		FLOAT				m_AspectRatio = 1.773f;
 		AEWindowType		m_Type;
 
 		BOOL				m_Active;
@@ -40,12 +41,16 @@ namespace Win32 {
 	public:
 
 		SIZE Size()			{ return m_Size; }
+		FLOAT AsRatio()		{ return m_AspectRatio;}
 		BOOL Active()		{ return m_Active; }
 
 	public:
 
 		VOID Size(SIZE size)			{ m_Size = size; }
-		VOID Size(int cx, int cy)		{ m_Size.cx = cx; m_Size.cy = cy; }
+		VOID Size(INT cx, INT cy)		{ m_Size.cx = cx; m_Size.cy = cy; }
+		VOID AsRatio(FLOAT w, FLOAT h)	{ m_AspectRatio = w/h; }
+		VOID AsRatio(SIZE size)			{ m_AspectRatio = (float)size.cx/ (float)size.cy;}
+		VOID AsRatio(FLOAT ratio)		{ m_AspectRatio = ratio;}
 		VOID Active(BOOL active)		{ m_Active = active; }
 	};
 }

@@ -61,6 +61,15 @@
     <Filter Include="Source\Engine\Classes">
       <UniqueIdentifier>{ca798aa8-94c8-4bfd-8bb3-c4305914526f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{acecbd3c-0e4b-4532-a216-d5d1df223080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\Private">
+      <UniqueIdentifier>{68dc4939-c54f-4d5d-a433-8c88babbde1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\Public">
+      <UniqueIdentifier>{f3bb9e46-9f6e-4bdc-b522-64325321931d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AeroEngine\src\AEPCH.cpp">
@@ -110,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="AeroEngine\src\platform\_WIN32\w32Caption.cpp">
       <Filter>Source\Private\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp">
+      <Filter>Source\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,5 +176,11 @@
     <ClInclude Include="AeroEngine\src\platform\_WIN32\w32Caption.h">
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
