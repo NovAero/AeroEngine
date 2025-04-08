@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Dx12Deps.h"
+#include "DXHelper.h"
+
 namespace AE::Renderer {
     class Dx12Window : public Win32::AEWindow {
     public:
@@ -16,14 +19,23 @@ namespace AE::Renderer {
         virtual void OnKeyUp(UINT8 /*key*/) {}
 
     protected:
+        
+        WSTRING GetAssetFullPath(LPCWSTR assetName);
 
         VOID GetHardwareAdapter(
             _In_ IDXGIFactory1* pFactory,
             _Outptr_result_maybenull_ IDXGIAdapter1** ppAdapter,
             bool requestHighPerformanceAdapter = false);
 
+        BOOL        m_UseWarpDevice = FALSE;
+        WSTRING     m_AssetsPath;
+ 
+    public:
 
-        BOOL m_UseWarpDevice;
+        BOOL WarpDevice()               { return m_UseWarpDevice; }
 
+    public:
+
+        VOID WarpDevice(BOOL use)       { m_UseWarpDevice = use; }
     };
 }

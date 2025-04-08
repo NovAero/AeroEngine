@@ -6,20 +6,31 @@ namespace AE::Renderer {
     Dx12Window::Dx12Window(WSTRING title, HICON icon, Win32::AEWindowType type)
         : Win32::AEWindow(title, icon, type)
     {
+        WCHAR assetsPath[512];
+        GetAssetsPath(assetsPath, _countof(assetsPath));
+        m_AssetsPath = assetsPath;
     }
 
     AE::Renderer::Dx12Window::~Dx12Window()
     {
     }
 
+    WSTRING Dx12Window::GetAssetFullPath(LPCWSTR assetName)
+    {
+        return m_AssetsPath + assetName;
+    }
+
     // Helper function for acquiring the first available hardware adapter that supports Direct3D 12.
     // If no such adapter can be found, *ppAdapter will be set to nullptr.
     _Use_decl_annotations_
-        void Dx12Window::GetHardwareAdapter(
+    void Dx12Window::GetHardwareAdapter(
             IDXGIFactory1* pFactory,
             IDXGIAdapter1** ppAdapter,
             bool requestHighPerformanceAdapter)
     {
+
+        using namespace Microsoft::WRL;
+
         *ppAdapter = nullptr;
 
         ComPtr<IDXGIAdapter1> adapter;

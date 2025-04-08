@@ -48,6 +48,7 @@ namespace Win32 {
 			case WM_EXITSIZEMOVE:	 { OnExitSizeMove();									}	break;
 			case WM_TIMER:			 { RedrawWindow();										}	break;
 			case WM_PAINT:			 { OnPaint();											}   break;
+			case WM_DESTROY:		 { PostQuitMessage(0);									}	return 0;
 		}
 
 		return SubObject::MessageHandler(hwnd, message, wParam, lParam);

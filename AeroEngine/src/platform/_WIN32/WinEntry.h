@@ -2,6 +2,7 @@
 #include "IAEApplication.h"
 #include "common/CmdLineArgs.h"
 #include "engine/SplashScreen.h"
+#include "engine/Simulation.h"
 
 //CoreMinimal disables warning C4251 - can be found through AEPCH.h -> Core.h -> CoreMinimal.h
 
@@ -24,7 +25,6 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	Logger logger;
 	
 	EntryApp->PreInitialise();
-	EntryApp->Initialise();
 
 	MSG msg = { 0 };
 	while (msg.message != WM_QUIT) {
