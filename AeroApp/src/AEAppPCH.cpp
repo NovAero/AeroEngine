@@ -10,7 +10,10 @@ public:
 public:
 	VOID SetupPGS();
 	VOID Initialise() {}
-	VOID Update() {}
+	VOID Update() {
+		Simulation::OnUpdate();
+	}
+	VOID Exit() {}
 };
 //Interfacing for entry point... Magic!!
 ENTRYAPP(AEApplication)

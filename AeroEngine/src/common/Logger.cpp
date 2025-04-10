@@ -25,8 +25,6 @@ VOID Logger::PrintLog(const WCHAR* fmt, ...)
 	vswprintf_s(buff, fmt, args);
 	va_end(args);
 
-	OutputDebugString(buff);
-
 	std::wfstream outFile;
 
 	outFile.open(WSTRING(LogDirectory() + L"/" + LogFile()), std::ios_base::app);

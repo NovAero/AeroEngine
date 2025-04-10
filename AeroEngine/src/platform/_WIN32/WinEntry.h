@@ -38,5 +38,7 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		}
 	}
 
+	EntryApp->Exit();
+
 	return 0;
 }

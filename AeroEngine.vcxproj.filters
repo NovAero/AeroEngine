@@ -121,7 +121,7 @@
       <Filter>Source\Private\Platform\Win32</Filter>
     </ClCompile>
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp">
-      <Filter>Source\Renderer</Filter>
+      <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,10 +177,11 @@
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
     <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h">
-      <Filter>Source\Renderer</Filter>
+      <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

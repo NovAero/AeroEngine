@@ -29,9 +29,6 @@ namespace Win32 {
 		m_Handle = CreateWindow(m_Class.c_str(), m_Title.c_str(),
 			m_Type, ((desktop.right / 2) - (Size().cx / 2)), ((desktop.bottom / 2) - ( Size().cy / 2)), Size().cx, Size().cy,
 			0, 0, HInstance(), (void*)this);
-
-		ShowWindow(m_Handle, SW_SHOW);
-		UpdateWindow(m_Handle);
 	}
 
 	LRESULT AEWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

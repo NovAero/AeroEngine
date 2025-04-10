@@ -18,6 +18,8 @@ namespace Win32 {
 
 		virtual VOID Update() = 0;
 
+		virtual VOID Exit() = 0;
+
 	};
 
 	IAEApplication* EntryApplication();

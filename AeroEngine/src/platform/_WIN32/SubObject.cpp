@@ -47,7 +47,10 @@ namespace Win32 {
 		wcex.lpfnWndProc = SetupMessageHandler;
 
 		//Finally, register the class
-		RegisterClassEx(&wcex);
+		ATOM atom =	RegisterClassEx(&wcex);
+
+		assert(atom > 0);
+
 	}
 
 	LRESULT SubObject::SetupMessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

@@ -20,75 +20,308 @@ namespace AE::Renderer {
         return m_AssetsPath + assetName;
     }
 
-    // Helper function for acquiring the first available hardware adapter that supports Direct3D 12.
-    // If no such adapter can be found, *ppAdapter will be set to nullptr.
-    _Use_decl_annotations_
-    void Dx12Window::GetHardwareAdapter(
-            IDXGIFactory1* pFactory,
-            IDXGIAdapter1** ppAdapter,
-            bool requestHighPerformanceAdapter)
+    VOID Dx12Window::EnableDebugLayer()
     {
 
-        using namespace Microsoft::WRL;
+    #ifdef _DEBUG
 
-        *ppAdapter = nullptr;
+        ComPtr<ID3D12Debug> debugInterface;
+        ThrowIfFailed(D3D12GetDebugInterface(IID_PPV_ARGS(&debugInterface)));
 
-        ComPtr<IDXGIAdapter1> adapter;
+        debugInterface->EnableDebugLayer();
 
-        ComPtr<IDXGIFactory6> factory6;
-        if (SUCCEEDED(pFactory->QueryInterface(IID_PPV_ARGS(&factory6))))
-        {
-            for (
-                UINT adapterIndex = 0;
-                SUCCEEDED(factory6->EnumAdapterByGpuPreference(
-                    adapterIndex,
-                    requestHighPerformanceAdapter == true ? DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE : DXGI_GPU_PREFERENCE_UNSPECIFIED,
-                    IID_PPV_ARGS(&adapter)));
-                    ++adapterIndex)
-            {
-                DXGI_ADAPTER_DESC1 desc;
-                adapter->GetDesc1(&desc);
+    #endif // _DEBUG
+    }
 
-                if (desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)
+    ComPtr<IDXGIAdapter4> Dx12Window::GetHardwareAdapter(bool useWarp)
+    {
+        ComPtr<IDXGIFactory4> dxgiFactory;
+
+        UINT createFactoryFlags = 0;
+
+    #ifdef _DEBUG
+        createFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
+    #endif // _DEBUG
+
+        ThrowIfFailed(CreateDXGIFactory2(createFactoryFlags, IID_PPV_ARGS(&dxgiFactory)));
+
+        ComPtr<IDXGIAdapter1> dxgiAdapter1;
+        ComPtr<IDXGIAdapter4> dxgiAdapter4;
+
+        if (useWarp) {
+            ThrowIfFailed(dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(&dxgiAdapter1)));
+            ThrowIfFailed(dxgiAdapter1.As(&dxgiAdapter4));
+
+        }
+        else {
+
+            SIZE_T maxDedicatedVideoMemory = 0;
+
+            for (UINT i = 0; dxgiFactory->EnumAdapters1(i, &dxgiAdapter1) != DXGI_ERROR_NOT_FOUND; ++i) {
+
+                DXGI_ADAPTER_DESC1 dxgiAdapterDesc1;
+                dxgiAdapter1->GetDesc1(&dxgiAdapterDesc1);
+
+                if ((dxgiAdapterDesc1.Flags & DXGI_ADAPTER_FLAG3_SOFTWARE) == 0
+                    && SUCCEEDED(D3D12CreateDevice(dxgiAdapter1.Get(), D3D_FEATURE_LEVEL_11_0, __uuidof(ID3D12Device), nullptr))
+                    && dxgiAdapterDesc1.DedicatedVideoMemory > maxDedicatedVideoMemory)
                 {
-                    // Don't select the Basic Render Driver adapter.
-                    // If you want a software adapter, pass in "/warp" on the command line.
-                    continue;
+                    maxDedicatedVideoMemory = dxgiAdapterDesc1.DedicatedVideoMemory;
+                    ThrowIfFailed(dxgiAdapter1.As(&dxgiAdapter4));
+
                 }
 
-                // Check to see whether the adapter supports Direct3D 12, but don't create the
-                // actual device yet.
-                if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, _uuidof(ID3D12Device), nullptr)))
+            }
+        }
+
+        return dxgiAdapter4;
+    }
+
+    VOID Dx12Window::ParseCmdLineArgs() {
+        int argc;
+
+        wchar_t** argv = ::CommandLineToArgvW(::GetCommandLineW(), &argc);
+
+        for (size_t i = 0; i < argc; ++i)
+        {
+            if (::wcscmp(argv[i], L"-warp") == 0 || ::wcscmp(argv[i], L"--warp") == 0)
+            {
+                WarpDevice(true);
+            }
+        }
+        // Free memory allocated by CommandLineToArgvW
+        ::LocalFree(argv);
+    }
+
+    ComPtr<ID3D12Device2> Dx12Window::CreateDevice(ComPtr<IDXGIAdapter4> adapter)
+    {
+        ComPtr<ID3D12Device2> d3d12Device2;
+
+        ThrowIfFailed(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&d3d12Device2)));
+
+    #ifdef _DEBUG
+        ComPtr<ID3D12InfoQueue> pInfoQueue;
+        if (SUCCEEDED(d3d12Device2.As(&pInfoQueue))) {
+            pInfoQueue->SetBreakOnSeverity(D3D12_MESSAGE_SEVERITY_CORRUPTION, TRUE);
+            pInfoQueue->SetBreakOnSeverity(D3D12_MESSAGE_SEVERITY_ERROR, TRUE);
+            pInfoQueue->SetBreakOnSeverity(D3D12_MESSAGE_SEVERITY_WARNING, TRUE);
+
+            //Suppress messages based on severity
+            D3D12_MESSAGE_SEVERITY Severities[] =
+            {
+                D3D12_MESSAGE_SEVERITY_INFO
+            };
+
+            //Supress invdiviual messages by their ID
+            D3D12_MESSAGE_ID DenyIds[] = {
+                D3D12_MESSAGE_ID_CLEARRENDERTARGETVIEW_MISMATCHINGCLEARVALUE,
+                D3D12_MESSAGE_ID_MAP_INVALID_NULLRANGE,
+                D3D12_MESSAGE_ID_UNMAP_INVALID_NULLRANGE
+            };
+
+            D3D12_INFO_QUEUE_FILTER NewFilter = {};
+            NewFilter.DenyList.NumSeverities = _countof(Severities);
+            NewFilter.DenyList.pSeverityList = Severities;
+            NewFilter.DenyList.NumIDs = _countof(DenyIds);
+            NewFilter.DenyList.pIDList = DenyIds;
+
+            ThrowIfFailed(pInfoQueue->PushStorageFilter(&NewFilter));
+        }
+    #endif // _DEBUG
+
+        return d3d12Device2;
+    }
+
+    ComPtr<ID3D12CommandQueue> Dx12Window::CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type)
+    {
+        ComPtr<ID3D12CommandQueue> d3d12CommandQueue;
+
+        D3D12_COMMAND_QUEUE_DESC desc = {};
+        desc.Type = type;
+        desc.Priority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;
+        desc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
+        desc.NodeMask = 0;
+
+        ThrowIfFailed(device->CreateCommandQueue(&desc, IID_PPV_ARGS(&d3d12CommandQueue)));
+
+        return d3d12CommandQueue;
+    }
+
+    ComPtr<IDXGISwapChain4> Dx12Window::CreateSwapChain(HWND hWnd, ComPtr<ID3D12CommandQueue> commandQueue, UINT width, UINT height, UINT bufferCount)
+    {
+        ComPtr<IDXGISwapChain4> dxgiSwapChain4;
+        ComPtr<IDXGIFactory4> dxgiFactory4;
+        UINT createFactoryFlags;
+    #ifdef _DEBUG
+        createFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
+    #endif // 
+
+        ThrowIfFailed(CreateDXGIFactory2(createFactoryFlags, IID_PPV_ARGS(&dxgiFactory4)));
+
+        DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {};
+        swapChainDesc.Width = width;
+        swapChainDesc.Height = height;
+        swapChainDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+        swapChainDesc.Stereo = FALSE;
+        swapChainDesc.SampleDesc = { 1,0 };
+        swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+        swapChainDesc.BufferCount = bufferCount;
+        swapChainDesc.Scaling = DXGI_SCALING_STRETCH;
+        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+        swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+        swapChainDesc.Flags = CheckTearingSupport() ? DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : 0;
+
+        ComPtr<IDXGISwapChain1> swapChain1;
+        ThrowIfFailed(dxgiFactory4->CreateSwapChainForHwnd(commandQueue.Get(),
+            hWnd,
+            &swapChainDesc,
+            nullptr,
+            nullptr,
+            &swapChain1));
+
+        ThrowIfFailed(dxgiFactory4->MakeWindowAssociation(hWnd, DXGI_MWA_NO_ALT_ENTER));
+
+        ThrowIfFailed(swapChain1.As(&dxgiSwapChain4));
+
+        return dxgiSwapChain4;
+
+    }
+
+    ComPtr<ID3D12DescriptorHeap> AE::Renderer::Dx12Window::CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT numDescriptors)
+    {
+        ComPtr<ID3D12DescriptorHeap> descriptorHeap;
+
+        D3D12_DESCRIPTOR_HEAP_DESC desc = {};
+        desc.NumDescriptors = numDescriptors;
+        desc.Type = type;
+
+        ThrowIfFailed(device->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descriptorHeap)));
+
+        return descriptorHeap;
+    }
+
+    VOID Dx12Window::UpdateRenderTargetViews(ComPtr<ID3D12Device2> device, ComPtr<IDXGISwapChain4> swapChain, ComPtr<ID3D12DescriptorHeap> descriptorHeap)
+    {
+
+        auto rtvDescriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+
+        CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(descriptorHeap->GetCPUDescriptorHandleForHeapStart());
+
+        for (int i = 0; i < FrameCount; ++i) {
+            ComPtr<ID3D12Resource> backBuffer;
+            ThrowIfFailed(swapChain->GetBuffer(i, IID_PPV_ARGS(&backBuffer)));
+
+            device->CreateRenderTargetView(backBuffer.Get(), nullptr, rtvHandle);
+
+            m_backBuffers[i] = backBuffer;
+
+            rtvHandle.Offset(rtvDescriptorSize);
+        }
+
+    }
+
+    ComPtr<ID3D12CommandAllocator> Dx12Window::CreateCommandAllocator(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type)
+    {
+        ComPtr<ID3D12CommandAllocator> commandAllocator;
+        ThrowIfFailed(device->CreateCommandAllocator(type, IID_PPV_ARGS(&commandAllocator)));
+
+        return commandAllocator;
+    }
+
+    ComPtr<ID3D12GraphicsCommandList> Dx12Window::CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type)
+    {
+        ComPtr<ID3D12GraphicsCommandList> commandList;
+        ThrowIfFailed(device->CreateCommandList(0, type, commandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
+
+        ThrowIfFailed(commandList->Close());
+
+        return commandList;
+    }
+
+    ComPtr<ID3D12Fence> Dx12Window::CreateFence(ComPtr<ID3D12Device> device)
+    {
+        ComPtr<ID3D12Fence> fence;
+        ThrowIfFailed(device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence)));
+
+        return fence;
+    }
+
+    HANDLE Dx12Window::CreateEventHandle()
+    {
+        HANDLE fenceEvent;
+
+        fenceEvent = ::CreateEvent(NULL, FALSE, FALSE, NULL);
+        assert(fenceEvent && "Failed to create fence event");
+
+        return fenceEvent;
+    }
+
+    UINT Dx12Window::Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64 fenceValue)
+    {
+        UINT fenceValueForSignal = ++fenceValue;
+        ThrowIfFailed(commandQueue->Signal(fence.Get(), fenceValueForSignal));
+
+        return fenceValueForSignal;
+    }
+
+    VOID Dx12Window::WaitForFenceValue(ComPtr<ID3D12Fence> fence, UINT64 fenceValue, HANDLE fenceEvent, std::chrono::milliseconds duration)
+    {
+        if (fence->GetCompletedValue() < fenceValue) {
+            ThrowIfFailed(fence->SetEventOnCompletion(fenceValue, fenceEvent));
+            ::WaitForSingleObject(fenceEvent, static_cast<DWORD>(duration.count()));
+        }
+    }
+
+    VOID Dx12Window::Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64& fenceValue, HANDLE fenceEvent)
+    {
+        UINT64 fenceValueForSignal = Signal(commandQueue, fence, fenceValue);
+        WaitForFenceValue(fence, fenceValueForSignal, fenceEvent);
+    }
+
+    VOID Dx12Window::Resize(UINT width, UINT height)
+    {
+        if (Size().cx != width || Size().cy != height) {
+            //Size cant be zero
+            Size(std::max(1u, width), std::max(1u, height));
+
+            Flush(m_commandQueue, m_fence, m_fenceValue, m_fenceEvent);
+
+            for (int i = 0; i < FrameCount; ++i) {
+
+                m_backBuffers[i].Reset();
+                m_frameFenceValues[i] = m_frameFenceValues[m_currentBufferIndex];
+            }
+
+            DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
+            ThrowIfFailed(m_swapChain->GetDesc(&swapChainDesc));
+            ThrowIfFailed(m_swapChain->ResizeBuffers(FrameCount, Size().cx, Size().cy, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
+
+            m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
+
+            UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
+        }
+    }
+
+    BOOL Dx12Window::CheckTearingSupport()
+    {
+        BOOL allowTearing = FALSE;
+
+        ComPtr<IDXGIFactory4> factory4;
+        if (SUCCEEDED(CreateDXGIFactory1(IID_PPV_ARGS(&factory4))))
+        {
+            ComPtr<IDXGIFactory5> factory5;
+            if (SUCCEEDED(factory4.As(&factory5)))
+            {
+                if (FAILED(factory5->CheckFeatureSupport(
+                    DXGI_FEATURE_PRESENT_ALLOW_TEARING,
+                    &allowTearing, sizeof(allowTearing))))
                 {
-                    break;
+                    allowTearing = TRUE;
                 }
             }
         }
 
-        if (adapter.Get() == nullptr)
-        {
-            for (UINT adapterIndex = 0; SUCCEEDED(pFactory->EnumAdapters1(adapterIndex, &adapter)); ++adapterIndex)
-            {
-                DXGI_ADAPTER_DESC1 desc;
-                adapter->GetDesc1(&desc);
-
-                if (desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)
-                {
-                    // Don't select the Basic Render Driver adapter.
-                    // If you want a software adapter, pass in "/warp" on the command line.
-                    continue;
-                }
-
-                // Check to see whether the adapter supports Direct3D 12, but don't create the
-                // actual device yet.
-                if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_12_0, _uuidof(ID3D12Device), nullptr)))
-                {
-                    break;
-                }
-            }
-        }
-
-        *ppAdapter = adapter.Detach();
+        return allowTearing == TRUE;
     }
 
 }
