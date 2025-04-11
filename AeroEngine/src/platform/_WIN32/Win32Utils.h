@@ -5,9 +5,10 @@
 
 namespace Win32 {
 
-	enum AEWindowType : DWORD {
-		STATIC = WS_OVERLAPPED,
-		RESIZEABLE = WS_SIZEBOX,
+    enum AEWindowType : DWORD {
+        STATIC = WS_OVERLAPPED,
+        RESIZEABLE = WS_SIZEBOX,
+        STATIC_EX = WS_OVERLAPPEDWINDOW,
 		POPUP = WS_POPUP
 	};
 

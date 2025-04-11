@@ -15,6 +15,51 @@ namespace AE::Renderer {
     {
     }
 
+    LRESULT Dx12Window::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        if (m_Initialised) {
+            switch (message) {
+            case WM_PAINT:          { OnUpdate(); OnRender(); }   break;
+            case WM_SYSKEYDOWN:
+            case WM_KEYDOWN:
+            {
+                bool alt = (::GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
+
+                switch (wParam)
+                {
+                case 'V':
+                    m_VSync = !m_VSync;
+                    break;
+                case VK_ESCAPE:
+                    ::PostQuitMessage(0);
+                    break;
+                case VK_RETURN:
+                    if (alt)
+                    {
+                case VK_F11:
+                    SetFullscreen(!m_fullscreen);
+                    }
+                    break;
+                }
+            }
+            break;
+            case WM_SYSCHAR: break;
+            case WM_SIZE:
+            {
+                RECT clientRect = {};
+                ::GetClientRect(Handle(), &clientRect);
+
+                int width = clientRect.right - clientRect.left;
+                int height = clientRect.bottom - clientRect.top;
+
+                Resize(width, height);
+            } break;
+            }
+        }
+            
+        return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
+    }
+
     WSTRING Dx12Window::GetAssetFullPath(LPCWSTR assetName)
     {
         return m_AssetsPath + assetName;
@@ -299,6 +344,54 @@ namespace AE::Renderer {
             m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
 
             UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
+        }
+    }
+    VOID Dx12Window::SetFullscreen(bool fullscreen)
+    {
+        if (m_fullscreen != fullscreen) {
+            m_fullscreen = fullscreen;
+
+            if (m_fullscreen) {
+
+                RECT rect;
+
+                GetWindowRect(Handle(), &rect);
+
+                UINT windowStyle = Win32::AEWindowType::POPUP;
+
+                SetWindowLongW(Handle(), GWL_STYLE, windowStyle);
+
+                // Query the name of the nearest display device for the window.
+                // This is required to set the fullscreen dimensions of the window
+                // when using a multi-monitor setup.
+                HMONITOR hMonitor = ::MonitorFromWindow(Handle(), MONITOR_DEFAULTTONEAREST);
+                MONITORINFOEX monitorInfo = {};
+                monitorInfo.cbSize = sizeof(MONITORINFOEX);
+                GetMonitorInfo(hMonitor, &monitorInfo);
+
+                SetWindowPos(Handle(), HWND_TOP,
+                    monitorInfo.rcMonitor.left,
+                    monitorInfo.rcMonitor.top,
+                    monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
+                    monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+                    SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+                ShowWindow(Handle(), SW_MAXIMIZE);
+            }
+            else {
+                // Restore all the window decorators.
+                SetWindowLong(Handle(), GWL_STYLE, Win32::AEWindowType::STATIC_EX);
+
+                SetWindowPos(Handle(), HWND_NOTOPMOST,
+                    m_WindowRect.left,
+                    m_WindowRect.top,
+                    m_WindowRect.right - m_WindowRect.left,
+                    m_WindowRect.bottom - m_WindowRect.top,
+                    SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+                ShowWindow(Handle(), SW_NORMAL);
+
+            }
         }
     }
 

@@ -10,6 +10,8 @@ namespace AE::Renderer {
         Dx12Window(WSTRING title, HICON icon = nullptr , Win32::AEWindowType type = Win32::AEWindowType::RESIZEABLE);
         virtual ~Dx12Window();
 
+		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) override;
+
         virtual void OnInit() = 0;
         virtual void OnUpdate() = 0;
         virtual void OnRender() = 0;
@@ -20,34 +22,34 @@ namespace AE::Renderer {
 
     protected:
         
-        WSTRING								GetAssetFullPath(LPCWSTR assetName);
+        WSTRING									GetAssetFullPath(LPCWSTR assetName);
 
-		VOID								EnableDebugLayer();
-        ComPtr<IDXGIAdapter4>				GetHardwareAdapter(bool useWarp);
-		ComPtr<ID3D12Device2>				CreateDevice(ComPtr<IDXGIAdapter4> adapter);
-		ComPtr<ID3D12CommandQueue>			CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type);
-		ComPtr<IDXGISwapChain4>				CreateSwapChain(HWND hWnd, ComPtr<ID3D12CommandQueue> commandQueue, UINT width, UINT height, UINT bufferCount);
-		ComPtr<ID3D12DescriptorHeap>		CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT numDescriptors);
-		VOID								UpdateRenderTargetViews(ComPtr<ID3D12Device2> device, ComPtr<IDXGISwapChain4> swapChain, ComPtr<ID3D12DescriptorHeap> descriptorHeap);
-		ComPtr<ID3D12CommandAllocator>		CreateCommandAllocator(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type);
-		ComPtr<ID3D12GraphicsCommandList>   CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type);
-		ComPtr<ID3D12Fence>					CreateFence(ComPtr<ID3D12Device> device);
-		HANDLE								CreateEventHandle();
-		UINT								Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64 fenceValue);
-		VOID								WaitForFenceValue(ComPtr<ID3D12Fence> fence, UINT64 fenceValue, HANDLE fenceEvent, std::chrono::milliseconds duration = std::chrono::milliseconds::max());
-		VOID								Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64& fenceValue, HANDLE fenceEvent);
-		VOID								Resize(UINT width, UINT height);
+		VOID									EnableDebugLayer();
+        ComPtr<IDXGIAdapter4>					GetHardwareAdapter(bool useWarp);
+		ComPtr<ID3D12Device2>					CreateDevice(ComPtr<IDXGIAdapter4> adapter);
+		ComPtr<ID3D12CommandQueue>				CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type);
+		ComPtr<IDXGISwapChain4>					CreateSwapChain(HWND hWnd, ComPtr<ID3D12CommandQueue> commandQueue, UINT width, UINT height, UINT bufferCount);
+		ComPtr<ID3D12DescriptorHeap>			CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT numDescriptors);
+		VOID									UpdateRenderTargetViews(ComPtr<ID3D12Device2> device, ComPtr<IDXGISwapChain4> swapChain, ComPtr<ID3D12DescriptorHeap> descriptorHeap);
+		ComPtr<ID3D12CommandAllocator>			CreateCommandAllocator(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type);
+		ComPtr<ID3D12GraphicsCommandList>		CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type);
+		ComPtr<ID3D12Fence>						CreateFence(ComPtr<ID3D12Device> device);
+		HANDLE									CreateEventHandle();
+		UINT									Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64 fenceValue);
+		VOID									WaitForFenceValue(ComPtr<ID3D12Fence> fence, UINT64 fenceValue, HANDLE fenceEvent, std::chrono::milliseconds duration = std::chrono::milliseconds::max());
+		VOID									Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64& fenceValue, HANDLE fenceEvent);
+		VOID									Resize(UINT width, UINT height);
+		VOID									SetFullscreen(bool fullscreen);
 
-		BOOL								CheckTearingSupport();
-		VOID								ParseCmdLineArgs();
+		BOOL									CheckTearingSupport();
+		VOID									ParseCmdLineArgs();
+
 		
-
-
-
 		static const UINT						FrameCount = 3;
 
         BOOL									m_UseWarpDevice = FALSE;
 		WSTRING									m_AssetsPath;
+		BOOL									m_Initialised = FALSE;
 
 		// Pipeline objects.
 		D3D12_VIEWPORT							m_viewport;

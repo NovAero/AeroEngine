@@ -60,7 +60,7 @@ namespace AE {
 		m_fence = CreateFence(m_device);
 		m_fenceEvent = CreateEventHandle();
 
-		m_Active = TRUE;
+		m_Initialised = TRUE;
 
 		::ShowWindow(Handle(), SW_SHOW);
 	}
@@ -145,20 +145,12 @@ namespace AE {
 
 	LRESULT Simulation::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
-		if(m_Active)
+		if(m_Initialised)
 		{
-			switch (message) {
-			case WM_PAINT:
-			{
-				OnUpdate();
-				OnRender();
-				break;
-			}
 			
-			}
 		}
 
-		return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
+		return Dx12Window::MessageHandler(hwnd, message, wParam, lParam);
 	}
 
 

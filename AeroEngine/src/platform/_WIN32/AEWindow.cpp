@@ -9,6 +9,8 @@ namespace Win32 {
 		: Win32::SubObject(title, title, icon), m_Type(type)
 	{
 		Size(DEFAULTWIDTH, DEFAULTHEIGHT);
+		m_WindowRect = { 0,0,Size().cx, Size().cy };
+		AsRatio(Size());
 	}
 
 	AEWindow::~AEWindow()

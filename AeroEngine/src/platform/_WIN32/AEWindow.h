@@ -33,6 +33,8 @@ namespace Win32 {
 	protected:
 
 		SIZE				m_Size;
+
+		RECT				m_WindowRect;
 		FLOAT				m_AspectRatio = 1.773f;
 		AEWindowType		m_Type;
 
