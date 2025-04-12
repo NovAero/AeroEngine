@@ -70,6 +70,9 @@
     <Filter Include="Source\Renderer\Public">
       <UniqueIdentifier>{f3bb9e46-9f6e-4bdc-b522-64325321931d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game">
+      <UniqueIdentifier>{ac09c9a1-04ad-45fe-bd99-ca1ee1f2df3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AeroEngine\src\AEPCH.cpp">
@@ -122,6 +125,21 @@
     </ClCompile>
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp">
       <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\CommandAllocator.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\CommandQueue.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\SwapChain.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\game\GameBase.cpp">
+      <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +196,27 @@
     </ClInclude>
     <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h">
       <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\DXHelper.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\CommandAllocator.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\CommandList.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\CommandQueue.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\SwapChain.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\game\GameBase.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\game\KeyCodes.h">
+      <Filter>Source\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

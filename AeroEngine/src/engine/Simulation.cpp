@@ -138,7 +138,27 @@ namespace AE {
 
 	void Simulation::OnDestroy()
 	{
+
 		Flush(m_commandQueue, m_fence, m_fenceValue, m_fenceEvent);
+
+		m_device->Release();
+
+		m_commandQueue->Release();
+
+		m_swapChain->SetFullscreenState(FALSE, nullptr);
+		m_swapChain->Release();
+
+		for (auto buff : m_backBuffers) {
+			buff->Release();
+		}
+
+		m_commandList->Release();
+		
+		for (auto aloc : m_commandAllocators) {
+			aloc->Release();
+		}
+
+		m_rtvHeap->Release();
 
 		::CloseHandle(m_fenceEvent);
 	}

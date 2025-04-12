@@ -1,5 +1,6 @@
 #include "AEPCH.h"
 #include "Dx12Window.h"
+#include <dxgidebug.h>
 
 namespace AE::Renderer {
 

@@ -24,6 +24,7 @@ namespace AE {
 
 	private:
 
+
 		struct Vertex
 		{
 			XMFLOAT3 position;

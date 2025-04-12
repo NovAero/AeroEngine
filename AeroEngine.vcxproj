@@ -67,7 +67,9 @@
     <Link>
       <SubSystem>NotSet</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d12.lib;dxgi.lib;d3dcompiler.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d12.lib;dxguid.lib;dxgi.lib;d3dcompiler.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -89,7 +91,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d12.lib;dxgi.lib;d3dcompiler.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d12.lib;dxguid.lib;dxgi.lib;d3dcompiler.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -104,12 +108,17 @@
     <ClCompile Include="AeroEngine\src\engine\AeroEngine.cpp" />
     <ClCompile Include="AeroEngine\src\engine\Simulation.cpp" />
     <ClCompile Include="AeroEngine\src\engine\SplashScreen.cpp" />
+    <ClCompile Include="AeroEngine\src\game\GameBase.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\AEWindow.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\IAEApplication.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\SubObject.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\w32Caption.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\Win32Utils.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\CommandAllocator.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\CommandQueue.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\SwapChain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h" />
@@ -123,13 +132,20 @@
     <ClInclude Include="AeroEngine\src\engine\AeroEngine.h" />
     <ClInclude Include="AeroEngine\src\engine\Simulation.h" />
     <ClInclude Include="AeroEngine\src\engine\SplashScreen.h" />
+    <ClInclude Include="AeroEngine\src\game\GameBase.h" />
+    <ClInclude Include="AeroEngine\src\game\KeyCodes.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\AEWindow.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\IAEApplication.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\SubObject.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\w32Caption.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\Win32Utils.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\WinEntry.h" />
+    <ClInclude Include="AeroEngine\src\renderer\CommandAllocator.h" />
+    <ClInclude Include="AeroEngine\src\renderer\CommandList.h" />
+    <ClInclude Include="AeroEngine\src\renderer\CommandQueue.h" />
     <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h" />
+    <ClInclude Include="AeroEngine\src\renderer\DXHelper.h" />
+    <ClInclude Include="AeroEngine\src\renderer\SwapChain.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

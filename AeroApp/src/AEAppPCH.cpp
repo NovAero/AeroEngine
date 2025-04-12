@@ -13,7 +13,9 @@ public:
 	VOID Update() {
 		Simulation::OnUpdate();
 	}
-	VOID Exit() {}
+	VOID Exit() {
+		Simulation::OnDestroy();
+	}
 };
 //Interfacing for entry point... Magic!!
 ENTRYAPP(AEApplication)
