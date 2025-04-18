@@ -3,9 +3,9 @@
 class AERO_API PerGameSettings {
 
 private:
-	static PerGameSettings* pgs_inst;
+	static PerGameSettings* s_PgsInst;
 
-	static PerGameSettings* Instance() { return pgs_inst; }
+	static PerGameSettings* PerGameSettings_Inst() { return s_PgsInst; }
 
 public:
 
@@ -14,26 +14,26 @@ public:
 
 private:
 
-	WCHAR m_GameName[MAX_NAME_STRING];
-	WCHAR m_ShortName[MAX_NAME_STRING];
-	HICON m_MainIcon;
-	WCHAR m_BootTime[MAX_NAME_STRING];
-	WCHAR m_SplashURL[MAX_NAME_STRING];
+	WCHAR m_gameName[MAX_NAME_STRING];
+	WCHAR m_shortName[MAX_NAME_STRING];
+	HICON m_mainIcon;
+	WCHAR m_bootTime[MAX_NAME_STRING];
+	WCHAR m_splashURL[MAX_NAME_STRING];
 
 public:
 
-	static WCHAR* GameName() { return pgs_inst->m_GameName; }
-	static VOID SetGameName(UINT id) { LoadString(HInstance(), id, pgs_inst->m_GameName, MAX_NAME_STRING); }
+	static WCHAR* GameName() { return s_PgsInst->m_gameName; }
+	static VOID SetGameName(UINT id) { LoadString(HInstance(), id, s_PgsInst->m_gameName, MAX_NAME_STRING); }
 
-	static WCHAR* ShortName() { return pgs_inst->m_ShortName; }
-	static VOID SetShortName(UINT id) { LoadString(HInstance(), id, pgs_inst->m_ShortName, MAX_NAME_STRING); }
+	static WCHAR* ShortName() { return s_PgsInst->m_shortName; }
+	static VOID SetShortName(UINT id) { LoadString(HInstance(), id, s_PgsInst->m_shortName, MAX_NAME_STRING); }
 
-	static HICON MainIcon() { return pgs_inst->m_MainIcon; }
+	static HICON MainIcon() { return s_PgsInst->m_mainIcon; }
 	static VOID SetMainIcon(UINT id) { LoadIcon(HInstance(), MAKEINTRESOURCE(id)); }
 	
-	static WCHAR* BootTime() { return pgs_inst->m_BootTime; }
+	static WCHAR* BootTime() { return s_PgsInst->m_bootTime; }
 
-	static WCHAR* SplashURL() { return pgs_inst->m_SplashURL; }
-	static VOID SetSplashURL(UINT id) { LoadString(HInstance(), id, pgs_inst->m_SplashURL, MAX_NAME_STRING); }
+	static WCHAR* SplashURL() { return s_PgsInst->m_splashURL; }
+	static VOID SetSplashURL(UINT id) { LoadString(HInstance(), id, s_PgsInst->m_splashURL, MAX_NAME_STRING); }
 
 };

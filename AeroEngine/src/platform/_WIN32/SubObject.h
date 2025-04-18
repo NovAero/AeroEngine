@@ -15,18 +15,18 @@ namespace Win32 {
 		virtual	LRESULT			 MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 						
 	protected:
-		WSTRING	m_Class;
-		WSTRING	m_Title;
+		WSTRING			m_class;
+		WSTRING			m_title;
 
 		HICON			m_hIcon;
 
-		HWND			m_Handle;
+		HWND			m_handle;
 
 
 	public:
-		HWND Handle() { return m_Handle; }
+		HWND Handle() { return m_handle; }
 	
 	public:
-		VOID Handle(HWND hwnd) { m_Handle = hwnd; }
+		VOID Handle(HWND hwnd) { m_handle = hwnd; }
 	};
 }

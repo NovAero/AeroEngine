@@ -26,27 +26,27 @@ namespace AE::Renderer {
 		ComPtr<ID3D12CommandQueue>			GetD3D12CommandQueue() const;
 
 	protected:
-		ComPtr<ID3D12CommandAllocator> CreatecommandAllocator();
-		ComPtr<ID3D12GraphicsCommandList2> CreateCommandList(ComPtr<ID3D12CommandAllocator> allocator);
+		ComPtr<ID3D12CommandAllocator>		CreatecommandAllocator();
+		ComPtr<ID3D12GraphicsCommandList2>	CreateCommandList(ComPtr<ID3D12CommandAllocator> allocator);
 
 	private:
 		//Keeping track of command allocators that are "in flight"
 		struct CommandAllocatorEntry {
-			UINT64 fenceValue;
-			ComPtr<ID3D12CommandAllocator> commandAllocator;
+			UINT64 FenceValue;
+			ComPtr<ID3D12CommandAllocator> CommandAllocator;
 		};
 
 		using CommandAllocatorQueue = std::queue<CommandAllocatorEntry>;
 		using CommandListQueue = std::queue<ComPtr<ID3D12GraphicsCommandList2>>;
 
-		D3D12_COMMAND_LIST_TYPE					m_CommandListType;
+		D3D12_COMMAND_LIST_TYPE					m_commandListType;
 		ComPtr<ID3D12Device2>					m_d3d12Device;
 		ComPtr<ID3D12CommandQueue>				m_d3d12CommandQueue;
 		ComPtr<ID3D12Fence>						m_d3d12Fence;
-		HANDLE									m_FenceEvent;
-		UINT64									m_FenceValue;
+		HANDLE									m_fenceEvent;
+		UINT64									m_fenceValue;
 
-		CommandAllocatorQueue					m_CommandAllocatorQueue;
-		CommandListQueue						m_CommandListQueue;
+		CommandAllocatorQueue					m_commandAllocatorQueue;
+		CommandListQueue						m_commandListQueue;
 	};
 }

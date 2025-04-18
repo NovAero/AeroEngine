@@ -4,11 +4,11 @@
 #include <cstdio>
 #include <TlHelp32.h>
 
-Logger* Logger::log_inst;
+Logger* Logger::s_LogInst;
 
 Logger::Logger()
 {
-	log_inst = this;
+	s_LogInst = this;
 }
 
 Logger::~Logger()
@@ -51,6 +51,9 @@ WSTRING Logger::LogDirectory()
 	CreateDirectory(path, NULL);
 	wcscat_s(path, L"\\Log");
 	CreateDirectory(path, NULL);
+
+	if (AppDataLocal) delete[] AppDataLocal;
+
 	return path;
 }
 

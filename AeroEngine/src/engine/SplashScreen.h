@@ -8,7 +8,7 @@ namespace SplashScreen {
 
 }
 
-class AERO_API SplashWindow : public Win32::AEWindow {
+class AERO_API SplashWindow : public Win32::W32Window {
 public:
 	SplashWindow();
 	~SplashWindow();
@@ -17,5 +17,5 @@ public:
 
 
 private:
-	WCHAR m_OutputMessage[MAX_NAME_STRING];
+	WCHAR m_outputMessage[MAX_NAME_STRING];
 };

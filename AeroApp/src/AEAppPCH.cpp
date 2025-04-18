@@ -9,7 +9,9 @@ public:
 
 public:
 	VOID SetupPGS();
-	VOID Initialise() {}
+	VOID Initialise() {
+		Simulation::OnInit();
+	}
 	VOID Update() {
 		Simulation::OnUpdate();
 	}

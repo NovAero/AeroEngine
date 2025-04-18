@@ -4,10 +4,10 @@
 class AERO_API Logger {
 
 private:
-	static Logger* log_inst;
+	static Logger* s_LogInst;
 
 public:
-	static Logger* Instance() { return log_inst; }
+	static Logger* Instance() { return s_LogInst; }
 
 public:
 	Logger();

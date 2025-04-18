@@ -4,10 +4,10 @@
 #include "DXHelper.h"
 
 namespace AE::Renderer {
-    class AERO_API Dx12Window : public Win32::AEWindow {
+    class AERO_API Dx12Window : public Win32::W32Window {
     public:
 
-        Dx12Window(WSTRING title, HICON icon = nullptr , Win32::AEWindowType type = Win32::AEWindowType::RESIZEABLE);
+        Dx12Window(WSTRING title, HICON icon = nullptr , Win32::EWindowType type = Win32::EWindowType::RESIZEABLE);
         virtual ~Dx12Window();
 
 		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) override;
@@ -39,13 +39,13 @@ namespace AE::Renderer {
 		VOID									WaitForFenceValue(ComPtr<ID3D12Fence> fence, UINT64 fenceValue, HANDLE fenceEvent, std::chrono::milliseconds duration = std::chrono::milliseconds::max());
 		VOID									Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, UINT64& fenceValue, HANDLE fenceEvent);
 		VOID									Resize(UINT width, UINT height);
-		VOID									SetFullscreen(bool fullscreen);
+		VOID									SetFullscreen(BOOL fullscreen);
 
 		BOOL									CheckTearingSupport();
 		VOID									ParseCmdLineArgs();
 
 		
-		static const UINT						FrameCount = 3;
+		static const UINT						s_FrameCount = 3;
 
         BOOL									m_UseWarpDevice = FALSE;
 		WSTRING									m_AssetsPath;
@@ -57,9 +57,9 @@ namespace AE::Renderer {
 		ComPtr<ID3D12Device2>					m_device;
 		ComPtr<ID3D12CommandQueue>				m_commandQueue;
 		ComPtr<IDXGISwapChain4>					m_swapChain;
-		ComPtr<ID3D12Resource>					m_backBuffers[FrameCount];
+		ComPtr<ID3D12Resource>					m_backBuffers[s_FrameCount];
 		ComPtr<ID3D12GraphicsCommandList>		m_commandList;
-		ComPtr<ID3D12CommandAllocator>			m_commandAllocators[FrameCount];
+		ComPtr<ID3D12CommandAllocator>			m_commandAllocators[s_FrameCount];
 		ComPtr<ID3D12DescriptorHeap>			m_rtvHeap;
 		UINT									m_rtvDescriptorSize;
 		UINT									m_currentBufferIndex;
@@ -72,7 +72,7 @@ namespace AE::Renderer {
 
 		ComPtr<ID3D12Fence>						m_fence;
 		UINT64									m_fenceValue;
-		UINT64									m_frameFenceValues[FrameCount] = {};
+		UINT64									m_frameFenceValues[s_FrameCount] = {};
 		HANDLE									m_fenceEvent;
 
 		BOOL									m_VSync = true;

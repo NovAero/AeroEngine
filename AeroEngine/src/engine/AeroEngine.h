@@ -4,7 +4,7 @@ class AERO_API AeroEngine;
 
 namespace Engine {
 
-	enum EngineMode : INT {
+	enum EEngineMode : INT {
 		NONE,
 		DEBUG,
 		RELEASE,
@@ -14,8 +14,8 @@ namespace Engine {
 
 	extern AeroEngine g_AeroEngine;
 
-	VOID AERO_API SetMode(EngineMode mode);
-	EngineMode AERO_API GetMode();
+	VOID AERO_API SetMode(EEngineMode mode);
+	EEngineMode AERO_API GetMode();
 
 	WSTRING AERO_API EngineModeToString();
 
@@ -29,10 +29,10 @@ public:
 	AeroEngine();
 	~AeroEngine();
 
-	EngineMode GetEngineMode();
-	VOID SetEngineMode(EngineMode mode);
+	EEngineMode GetEngineMode();
+	VOID SetEngineMode(EEngineMode mode);
 
 private:
 
-	EngineMode m_EngineMode;
+	EEngineMode m_engineMode;
 };

@@ -4,7 +4,6 @@
 #include <Windows.h>
 #endif
 
-
 #include <string>
 #include <list>
 #include <algorithm>

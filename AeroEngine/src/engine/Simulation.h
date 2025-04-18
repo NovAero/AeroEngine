@@ -12,7 +12,7 @@ namespace AE {
 		Simulation();
 		~Simulation();
 		
-		virtual VOID PreInitialise() override;
+		virtual VOID Register() override;
 		virtual VOID Exit() override;
 
 		virtual void OnInit();
@@ -22,14 +22,17 @@ namespace AE {
 
 		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
+		//virtual VOID OnKeyPressed(/*Keyeventargs& */);
+		//virtual VOID OnKeyReleased();
+		//virtual VOID OnMouseMove();
+		//virtual VOID OnMouseButtonPressed();
+		//virtual VOID OnMouseWheel();
+
+		//virtual VOID OnResize();
+		//virtual VOID OnWindowDestroy();
+
 	private:
 
-
-		struct Vertex
-		{
-			XMFLOAT3 position;
-			XMFLOAT4 color;
-		};
 
 
 	};

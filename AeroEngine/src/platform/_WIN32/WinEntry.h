@@ -23,8 +23,9 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	CmdLineArgs::ReadArgs();
 
 	Logger logger;
-	
-	EntryApp->PreInitialise();
+
+	EntryApp->Register();
+	EntryApp->Initialise();
 
 	MSG msg = { 0 };
 	while (msg.message != WM_QUIT) {
@@ -41,3 +42,4 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	EntryApp->Exit();
 
 	return 0;
+}

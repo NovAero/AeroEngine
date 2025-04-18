@@ -1,20 +1,20 @@
 <head> 
     <h1>AeroEngine (AE)</h1> 
-    <h3><i>Version 1.1.2a</i></h3>
+    <h3><i>Version 1.1.3a</i></h3>
 </head>
 
 <body>
     <h4>Overview:</h4>
     <p>
-        AeroEngine is a Direct3D 12 game engine, and is currently in early development.<br>
+        AeroEngine is a custom Direct3D 12 powered game engine, and is currently in early development.<br>
+        It is intended for use as an Isometric/Topdown game engine.<br>
     </p>
-    <h4>Changelist 1.1.2a:</h4>
-    <small>10/04/2025</small>
+    <h4>Changelist 1.1.3a:</h4>
+    <small>18/04/2025</small>
     <p>
-        -Added D3D12 initalisation and pipeline setup<br>
-        -Fixed error caused from Simulation::PreInititalise not calling AEWindow::Initialise where the HWND is set, causing flow on error during swap chain creation<br>
-        -Added AEApplication::Exit() for interface overloading<br>
-        -Simulation::Exit() now flushes the Dx12 command queues, and clears all GPU processes that it is currently calling<br>
-        -Added update loop functionality to Simulation, creating an fps and delta value - to be used later
+        -Major refactor of classes, renaming, and removing of redundancies<br>
+        -AEWindow is now W32Window, to follow consistently with Dx12Window<br>
+        -All enums renamed to include E as a prefix (i.e. EWindowType)<br>
+        -Simulation is to be used as the main Game class, will be handled by the AeroEngine class - loaded by AEApplication<br> 
     </p>
 </body>

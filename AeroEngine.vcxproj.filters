@@ -108,7 +108,7 @@
     <ClCompile Include="AeroEngine\src\engine\SplashScreen.cpp">
       <Filter>Source\Engine\Private</Filter>
     </ClCompile>
-    <ClCompile Include="AeroEngine\src\platform\_WIN32\AEWindow.cpp">
+    <ClCompile Include="AeroEngine\src\platform\_WIN32\W32Window.cpp">
       <Filter>Source\Private\Platform\Win32</Filter>
     </ClCompile>
     <ClCompile Include="AeroEngine\src\platform\_WIN32\SubObject.cpp">
@@ -179,7 +179,7 @@
     <ClInclude Include="AeroEngine\src\platform\_WIN32\SubObject.h">
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="AeroEngine\src\platform\_WIN32\AEWindow.h">
+    <ClInclude Include="AeroEngine\src\platform\_WIN32\W32Window.h">
       <Filter>Source\Public\Platform\Win32</Filter>
     </ClInclude>
     <ClInclude Include="AeroEngine\src\platform\_WIN32\Win32Utils.h">

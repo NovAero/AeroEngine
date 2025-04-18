@@ -4,8 +4,8 @@
 
 namespace AE::Renderer {
 
-    Dx12Window::Dx12Window(WSTRING title, HICON icon, Win32::AEWindowType type)
-        : Win32::AEWindow(title, icon, type)
+    Dx12Window::Dx12Window(WSTRING title, HICON icon, Win32::EWindowType type)
+        : Win32::W32Window(title, icon, type)
     {
         WCHAR assetsPath[512];
         GetAssetsPath(assetsPath, _countof(assetsPath));
@@ -58,7 +58,7 @@ namespace AE::Renderer {
             }
         }
             
-        return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
+        return W32Window::MessageHandler(hwnd, message, wParam, lParam);
     }
 
     WSTRING Dx12Window::GetAssetFullPath(LPCWSTR assetName)
@@ -253,7 +253,7 @@ namespace AE::Renderer {
 
         CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(descriptorHeap->GetCPUDescriptorHandleForHeapStart());
 
-        for (int i = 0; i < FrameCount; ++i) {
+        for (int i = 0; i < s_FrameCount; ++i) {
             ComPtr<ID3D12Resource> backBuffer;
             ThrowIfFailed(swapChain->GetBuffer(i, IID_PPV_ARGS(&backBuffer)));
 
@@ -332,7 +332,7 @@ namespace AE::Renderer {
 
             Flush(m_commandQueue, m_fence, m_fenceValue, m_fenceEvent);
 
-            for (int i = 0; i < FrameCount; ++i) {
+            for (int i = 0; i < s_FrameCount; ++i) {
 
                 m_backBuffers[i].Reset();
                 m_frameFenceValues[i] = m_frameFenceValues[m_currentBufferIndex];
@@ -340,14 +340,14 @@ namespace AE::Renderer {
 
             DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
             ThrowIfFailed(m_swapChain->GetDesc(&swapChainDesc));
-            ThrowIfFailed(m_swapChain->ResizeBuffers(FrameCount, Size().cx, Size().cy, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
+            ThrowIfFailed(m_swapChain->ResizeBuffers(s_FrameCount, Size().cx, Size().cy, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
 
             m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
 
             UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
         }
     }
-    VOID Dx12Window::SetFullscreen(bool fullscreen)
+    VOID Dx12Window::SetFullscreen(BOOL fullscreen)
     {
         if (m_fullscreen != fullscreen) {
             m_fullscreen = fullscreen;
@@ -358,7 +358,7 @@ namespace AE::Renderer {
 
                 GetWindowRect(Handle(), &rect);
 
-                UINT windowStyle = Win32::AEWindowType::POPUP;
+                UINT windowStyle = Win32::EWindowType::POPUP;
 
                 SetWindowLongW(Handle(), GWL_STYLE, windowStyle);
 
@@ -381,13 +381,13 @@ namespace AE::Renderer {
             }
             else {
                 // Restore all the window decorators.
-                SetWindowLong(Handle(), GWL_STYLE, Win32::AEWindowType::STATIC_EX);
+                SetWindowLong(Handle(), GWL_STYLE, Win32::EWindowType::STATIC_EX);
 
                 SetWindowPos(Handle(), HWND_NOTOPMOST,
-                    m_WindowRect.left,
-                    m_WindowRect.top,
-                    m_WindowRect.right - m_WindowRect.left,
-                    m_WindowRect.bottom - m_WindowRect.top,
+                    m_windowRect.left,
+                    m_windowRect.top,
+                    m_windowRect.right - m_windowRect.left,
+                    m_windowRect.bottom - m_windowRect.top,
                     SWP_FRAMECHANGED | SWP_NOACTIVATE);
 
                 ShowWindow(Handle(), SW_NORMAL);

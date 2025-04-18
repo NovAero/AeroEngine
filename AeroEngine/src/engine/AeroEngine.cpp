@@ -2,12 +2,12 @@
 
 namespace Engine {
 	AeroEngine g_AeroEngine;
-	VOID SetMode(EngineMode mode)
+	VOID SetMode(EEngineMode mode)
 	{
 		g_AeroEngine.SetEngineMode(mode);
 	}
 
-	EngineMode GetMode()
+	EEngineMode GetMode()
 	{
 		return g_AeroEngine.GetEngineMode();
 	}
@@ -30,7 +30,7 @@ namespace Engine {
 AeroEngine::AeroEngine()
 {
 #ifdef _DEBUG
-	m_EngineMode = EngineMode::DEBUG;
+	m_engineMode = EEngineMode::DEBUG;
 #else
 	m_EngineMode = EngineMode::RELEASE;
 #endif
@@ -41,12 +41,12 @@ AeroEngine::~AeroEngine()
 {
 }
 
-EngineMode AeroEngine::GetEngineMode()
+EEngineMode AeroEngine::GetEngineMode()
 {
-	return m_EngineMode;
+	return m_engineMode;
 }
 
-VOID AeroEngine::SetEngineMode(EngineMode mode)
+VOID AeroEngine::SetEngineMode(EEngineMode mode)
 {
-	m_EngineMode = mode;
+	m_engineMode = mode;
 }

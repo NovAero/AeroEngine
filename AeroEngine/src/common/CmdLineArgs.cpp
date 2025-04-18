@@ -29,13 +29,13 @@ VOID CmdLineArgs::ReadArgument(const WCHAR* argument)
 		Logger::StartMTail();
 	}
 	if (wcscmp(argument, L"debug") == 0) {
-		Engine::SetMode(Engine::EngineMode::DEBUG);
+		Engine::SetMode(Engine::EEngineMode::DEBUG);
 	}
 	if (wcscmp(argument, L"editor") == 0) {
-		Engine::SetMode(Engine::EngineMode::EDITOR);
+		Engine::SetMode(Engine::EEngineMode::EDITOR);
 	}
 	if (wcscmp(argument, L"server") == 0) {
-		Engine::SetMode(Engine::EngineMode::SERVER);
+		Engine::SetMode(Engine::EEngineMode::SERVER);
 	}
 
 }

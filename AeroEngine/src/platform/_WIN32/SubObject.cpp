@@ -4,7 +4,7 @@
 namespace Win32 {
 
 	SubObject::SubObject(WSTRING className, WSTRING classTitle, HICON icon)
-		: m_Class(className), m_Title(classTitle), m_hIcon(icon)
+		: m_class(className), m_title(classTitle), m_hIcon(icon)
 	{
 
 	}
@@ -35,7 +35,7 @@ namespace Win32 {
 		wcex.hIconSm = m_hIcon;
 		
 		//class name
-		wcex.lpszClassName = m_Class.c_str();
+		wcex.lpszClassName = m_class.c_str();
 		
 		//drop down menus - none (its a game!!)
 		wcex.lpszMenuName = nullptr;

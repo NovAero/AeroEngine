@@ -15,7 +15,7 @@
 #include "platform/_WIN32/Win32Utils.h"
 #include "platform/_WIN32/SubObject.h"
 #include "platform/_WIN32/w32Caption.h"
-#include "platform/_WIN32/AEWindow.h"
+#include "platform/_WIN32/W32Window.h"
 #include "platform/_WIN32/IAEApplication.h"
 
 #endif

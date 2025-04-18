@@ -1,24 +1,24 @@
 ﻿#include "AEPCH.h"
-#include "AEWindow.h"
+#include "W32Window.h"
 
 #define DCX_UESTYLE 0x00010000
 
 namespace Win32 {
 
-	AEWindow::AEWindow(WSTRING title, HICON icon, AEWindowType type)
-		: Win32::SubObject(title, title, icon), m_Type(type)
+	W32Window::W32Window(WSTRING title, HICON icon, EWindowType type)
+		: Win32::SubObject(title, title, icon), m_type(type)
 	{
 		Size(DEFAULTWIDTH, DEFAULTHEIGHT);
-		m_WindowRect = { 0,0,Size().cx, Size().cy };
+		m_windowRect = { 0,0,Size().cx, Size().cy };
 		AsRatio(Size());
 	}
 
-	AEWindow::~AEWindow()
+	W32Window::~W32Window()
 	{
 
 	}
 
-	VOID AEWindow::Initialise()
+	VOID W32Window::Initialise()
 	{
 		RECT desktop;
 		const HWND hDesktop = GetDesktopWindow();
@@ -26,14 +26,14 @@ namespace Win32 {
 
 		RECT R = { 0,0, Size().cx, Size().cy};
 
-		AdjustWindowRect(&R, m_Type, false);
+		AdjustWindowRect(&R, m_type, false);
 
-		m_Handle = CreateWindow(m_Class.c_str(), m_Title.c_str(),
-			m_Type, ((desktop.right / 2) - (Size().cx / 2)), ((desktop.bottom / 2) - ( Size().cy / 2)), Size().cx, Size().cy,
+		m_handle = CreateWindow(m_class.c_str(), m_title.c_str(),
+			m_type, ((desktop.right / 2) - (Size().cx / 2)), ((desktop.bottom / 2) - ( Size().cy / 2)), Size().cx, Size().cy,
 			0, 0, HInstance(), (void*)this);
 	}
 
-	LRESULT AEWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+	LRESULT W32Window::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		switch (message) {
 
@@ -53,13 +53,13 @@ namespace Win32 {
 		return SubObject::MessageHandler(hwnd, message, wParam, lParam);
 	}
 
-	VOID AEWindow::RedrawWindow() {
+	VOID W32Window::RedrawWindow() {
 		SetWindowPos(Handle(), 0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 
 		SendMessage(Handle(), WM_PAINT, 0, 0);
 	}
 
-	VOID AEWindow::OnNonClientCreate() {
+	VOID W32Window::OnNonClientCreate() {
 
 		SetTimer(Handle(), 1, 100, NULL);
 		SetWindowTheme(Handle(),L"", L"");
@@ -70,11 +70,11 @@ namespace Win32 {
 		Win32::Caption::AddCaptionButton(new CaptionButton(L"🗕", CB_MINIMISE));
 	}
 
-	VOID AEWindow::OnNonClientActivate(BOOL active) {
+	VOID W32Window::OnNonClientActivate(BOOL active) {
 		Active(active);
 	}
 
-	VOID AEWindow::OnNonClientPaint(HRGN region) {
+	VOID W32Window::OnNonClientPaint(HRGN region) {
 
 		//start draw
 		HDC hdc = GetDCEx(Handle(), region, DCX_WINDOW | DCX_INTERSECTRGN | DCX_UESTYLE);
@@ -112,7 +112,7 @@ namespace Win32 {
 		ReleaseDC(Handle(), hdc);
 	}
 
-	VOID AEWindow::PaintCaption(HDC hdc) {
+	VOID W32Window::PaintCaption(HDC hdc) {
 
 		RECT rect;
 		GetWindowRect(Handle(), &rect);
@@ -127,7 +127,7 @@ namespace Win32 {
 			SetBkMode(hdc, TRANSPARENT);
 			SetTextColor(hdc, Active() ? RGB(255, 255, 255) : RGB(92, 92, 92));
 
-			DrawText(hdc, m_Title.c_str(), wcslen(m_Title.c_str()), &rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
+			DrawText(hdc, m_title.c_str(), wcslen(m_title.c_str()), &rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
 
 		}
 
@@ -168,7 +168,7 @@ namespace Win32 {
 
 	}
 
-	VOID AEWindow::OnNonClientLeftMouseButtonDown() {
+	VOID W32Window::OnNonClientLeftMouseButtonDown() {
 
 
 		POINT pt;
@@ -194,7 +194,7 @@ namespace Win32 {
 		}
 	}
 
-	VOID AEWindow::OnGetMinMaxInfo(MINMAXINFO* minmax) {
+	VOID W32Window::OnGetMinMaxInfo(MINMAXINFO* minmax) {
 		RECT WorkArea;
 		SystemParametersInfo(SPI_GETWORKAREA, 0, &WorkArea, 0);
 
@@ -206,7 +206,7 @@ namespace Win32 {
 		minmax->ptMinTrackSize.y = 300;
 	}
 
-	VOID AEWindow::OnExitSizeMove() {
+	VOID W32Window::OnExitSizeMove() {
 		RECT rect;
 		GetWindowRect(Handle(), &rect);
 		RECT workArea;
@@ -217,7 +217,7 @@ namespace Win32 {
 
 	}
 
-	VOID AEWindow::OnPaint() {
+	VOID W32Window::OnPaint() {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(Handle(), &ps);
 

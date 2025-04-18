@@ -27,13 +27,13 @@ namespace SplashScreen {
 }
 
 SplashWindow::SplashWindow()
-	: Win32::AEWindow(L"SplashScreen", NULL, Win32::AEWindowType::POPUP)
+	: Win32::W32Window(L"SplashScreen", NULL, Win32::EWindowType::POPUP)
 {
-	wcscpy_s(m_OutputMessage, L"SplashScreen starting...");
+	wcscpy_s(m_outputMessage, L"SplashScreen starting...");
 
-	Win32::AEWindow::RegisterNewClass();
+	Win32::W32Window::RegisterNewClass();
 	Size(500, 600);
-	Win32::AEWindow::Initialise();
+	Win32::W32Window::Initialise();
 
 }
 
@@ -58,7 +58,7 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPA
 
 		Win32::Utils::AddBitmap(PerGameSettings::SplashURL(), hdc);
 
-		if (Engine::GetMode() != Engine::EngineMode::RELEASE) {
+		if (Engine::GetMode() != Engine::EEngineMode::RELEASE) {
 			WSTRING engineModeText = Engine::EngineModeToString() + L" Mode";
 			SetTextAlign(hdc, TA_RIGHT);
 			TextOut(hdc, Size().cx - 15, 15, engineModeText.c_str(), wcslen(engineModeText.c_str()));
@@ -66,18 +66,18 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPA
 
 		SetTextAlign(hdc, TA_CENTER);
 
-		TextOut(hdc, Size().cx / 2, Size().cy - 30, m_OutputMessage, wcslen(m_OutputMessage));
+		TextOut(hdc, Size().cx / 2, Size().cy - 30, m_outputMessage, wcslen(m_outputMessage));
 		EndPaint(hwnd, &ps);
 	}
 	break;
 	case WM_OUTPUTMESSAGE:
 	{
 		WCHAR* msg = (WCHAR*)wParam;
-		wcscpy_s(m_OutputMessage, msg);
+		wcscpy_s(m_outputMessage, msg);
 		RedrawWindow();
 		return 0;
 	}
 	}
 
-	return AEWindow::MessageHandler(hwnd, message, wParam, lParam);
+	return W32Window::MessageHandler(hwnd, message, wParam, lParam);
 }

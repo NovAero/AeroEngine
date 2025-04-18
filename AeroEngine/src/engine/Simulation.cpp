@@ -14,16 +14,15 @@ namespace AE {
 	}
 
 
-	VOID Simulation::PreInitialise()
+	VOID Simulation::Register()
 	{
 		Logger::PrintLog(L"Application Starting...\n");
 		Logger::PrintLog(L"GameName: %s\n", PerGameSettings::GameName());
 		Logger::PrintLog(L"Boot Time: %s\n", PerGameSettings::BootTime());
 		Logger::PrintLog(L"Engine Mode: %s\n", Engine::EngineModeToString().c_str());
 
-		Win32::AEWindow::RegisterNewClass();
-		Win32::AEWindow::Initialise();
-		OnInit();
+		Win32::W32Window::RegisterNewClass();
+		Win32::W32Window::Initialise();
 	}
 
 	VOID Simulation::Exit()
@@ -42,16 +41,16 @@ namespace AE {
 
 		m_commandQueue = CreateCommandQueue(m_device, D3D12_COMMAND_LIST_TYPE_DIRECT);
 
-		m_swapChain = CreateSwapChain(Handle(), m_commandQueue, Size().cx, Size().cy, FrameCount);
+		m_swapChain = CreateSwapChain(Handle(), m_commandQueue, Size().cx, Size().cy, s_FrameCount);
 
 		m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
 
-		m_rtvHeap = CreateDescriptorHeap(m_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, FrameCount);
+		m_rtvHeap = CreateDescriptorHeap(m_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, s_FrameCount);
 		m_rtvDescriptorSize = m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
 		UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
 
-		for (int i = 0; i < FrameCount; ++i) {
+		for (int i = 0; i < s_FrameCount; ++i) {
 			m_commandAllocators[i] = CreateCommandAllocator(m_device, D3D12_COMMAND_LIST_TYPE_DIRECT);
 		}
 
