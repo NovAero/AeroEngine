@@ -105,6 +105,9 @@
     <ClCompile Include="AeroEngine\src\core\CoreDefinitions.cpp" />
     <ClCompile Include="AeroEngine\src\core\CoreMinimal.cpp" />
     <ClCompile Include="AeroEngine\src\core\PerGameSettings.cpp" />
+    <ClCompile Include="AeroEngine\src\core\Vec2.cpp" />
+    <ClCompile Include="AeroEngine\src\core\Vec3.cpp" />
+    <ClCompile Include="AeroEngine\src\core\Vec4.cpp" />
     <ClCompile Include="AeroEngine\src\engine\AeroEngine.cpp" />
     <ClCompile Include="AeroEngine\src\engine\Simulation.cpp" />
     <ClCompile Include="AeroEngine\src\engine\SplashScreen.cpp" />
@@ -128,6 +131,9 @@
     <ClInclude Include="AeroEngine\src\core\CoreDefinitions.h" />
     <ClInclude Include="AeroEngine\src\core\CoreMinimal.h" />
     <ClInclude Include="AeroEngine\src\core\PerGameSettings.h" />
+    <ClInclude Include="AeroEngine\src\core\Vec2.h" />
+    <ClInclude Include="AeroEngine\src\core\Vec3.h" />
+    <ClInclude Include="AeroEngine\src\core\Vec4.h" />
     <ClInclude Include="AeroEngine\src\engine\AeroEngine.h" />
     <ClInclude Include="AeroEngine\src\engine\Simulation.h" />
     <ClInclude Include="AeroEngine\src\engine\SplashScreen.h" />
