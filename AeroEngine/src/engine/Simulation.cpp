@@ -73,15 +73,6 @@ namespace AE {
 		
 	}
 
-	void Simulation::LoadContent()
-	{
-	}
-
-	void Simulation::UnloadContent()
-	{
-	}
-
-
 	VOID Simulation::OnKeyPressed()
 	{
 	}

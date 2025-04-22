@@ -138,6 +138,9 @@
     <ClCompile Include="AeroEngine\src\renderer\Renderer.cpp">
       <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
+    <ClCompile Include="AeroEngine\src\engine\GameTest.cpp">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="AeroEngine\src\renderer\Renderer.h">
       <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\engine\GameTest.h">
+      <Filter>Source\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

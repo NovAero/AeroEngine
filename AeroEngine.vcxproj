@@ -106,6 +106,7 @@
     <ClCompile Include="AeroEngine\src\core\CoreMinimal.cpp" />
     <ClCompile Include="AeroEngine\src\core\PerGameSettings.cpp" />
     <ClCompile Include="AeroEngine\src\engine\AeroEngine.cpp" />
+    <ClCompile Include="AeroEngine\src\engine\GameTest.cpp" />
     <ClCompile Include="AeroEngine\src\engine\Simulation.cpp" />
     <ClCompile Include="AeroEngine\src\engine\SplashScreen.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\W32Window.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="AeroEngine\src\core\CoreMinimal.h" />
     <ClInclude Include="AeroEngine\src\core\PerGameSettings.h" />
     <ClInclude Include="AeroEngine\src\engine\AeroEngine.h" />
+    <ClInclude Include="AeroEngine\src\engine\GameTest.h" />
     <ClInclude Include="AeroEngine\src\engine\Simulation.h" />
     <ClInclude Include="AeroEngine\src\engine\SplashScreen.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\W32Window.h" />

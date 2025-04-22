@@ -20,6 +20,10 @@ namespace AE::Graphics {
         virtual void OnKeyDown(UINT8 /*key*/) {}
         virtual void OnKeyUp(UINT8 /*key*/) {}
 
+	public:
+
+		static const UINT						s_FrameCount = 3;
+
     protected:
         
         WSTRING									GetAssetFullPath(LPCWSTR assetName);
@@ -45,7 +49,6 @@ namespace AE::Graphics {
 		VOID									ParseCmdLineArgs();
 
 		
-		static const UINT						s_FrameCount = 3;
 
         BOOL									m_UseWarpDevice = FALSE;
 		WSTRING									m_AssetsPath;
@@ -81,6 +84,7 @@ namespace AE::Graphics {
 
     public:
 
+		ComPtr<ID3D12Device2> Device()	{ return m_device; }
         BOOL WarpDevice()               { return m_UseWarpDevice; }
 
     public:

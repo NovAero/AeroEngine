@@ -2,12 +2,12 @@
 
 #include "renderer/Dx12Window.h"
 
+
 namespace AE::Graphics {
 
 	class AERO_API Renderer : public AE::Graphics::Dx12Window{
 	public:
 		Renderer(const WSTRING name, INT width, INT height, BOOL vSync);
-		~Renderer();
 
 		virtual VOID Register();
 		virtual VOID Exit();
@@ -21,8 +21,6 @@ namespace AE::Graphics {
 		virtual void UnloadContent();
 
 		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-	private:
 
 	};
 }

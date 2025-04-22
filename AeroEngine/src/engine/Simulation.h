@@ -20,21 +20,19 @@ namespace AE {
 		virtual void OnRender();
 		virtual void OnDestroy();
 
-		virtual void LoadContent();
-		virtual void UnloadContent();
+		virtual bool LoadContent() = 0;
+		virtual bool UnloadContent() = 0;
 
 	protected:
 
-		virtual VOID OnKeyPressed(/*Keyeventargs& */);
-		virtual VOID OnKeyReleased();
-		virtual VOID OnMouseMove();
-		virtual VOID OnMouseButtonPressed();
-		virtual VOID OnMouseWheel();
+		virtual VOID OnKeyPressed(/*Keyeventargs& e*/);
+		virtual VOID OnKeyReleased(/*Keyeventargs& e*/);
+		virtual VOID OnMouseMove(/*Mouseeventargs& e*/);
+		virtual VOID OnMouseButtonPressed(/*Mouseeventargs& e*/);
+		virtual VOID OnMouseWheel(/*Mouseeventargs& e*/);
 
 		virtual VOID OnResize();
 		virtual VOID OnWindowDestroy();
-
-	private:
 
 		static Graphics::Renderer* s_RenderManager;
 

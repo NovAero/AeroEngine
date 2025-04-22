@@ -12,11 +12,6 @@ namespace AE::Graphics {
 		m_VSync = vSync;
 	}
 
-	Renderer::~Renderer()
-	{
-	}
-
-
 	VOID Renderer::Register()
 	{
 		Win32::W32Window::RegisterNewClass();
