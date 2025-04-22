@@ -15,6 +15,12 @@
         -Major refactor of classes, renaming, and removing of redundancies<br>
         -AEWindow is now W32Window, to follow consistently with Dx12Window<br>
         -All enums renamed to include E as a prefix (i.e. EWindowType)<br>
-        -Simulation is to be used as the main Game class, will be handled by the AeroEngine class - loaded by AEApplication<br> 
+        -Simulation is to be used as the main Game class, will be handled by the AeroEngine class - loaded by AEApplication<br>
+    </p>
+    <h4>Changelist 1.1.3a - Additional:</h4>
+    <small>22/04/2025</small> 
+    <p>
+        -Moved window inistialisation out of Simulation and into Renderer <br>
+        -Simulation no longer inherits from Dx12Window - is now Renderer, updated to follow with refactors to Simulation definition and separation into managers<br>
     </p>
 </body>

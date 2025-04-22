@@ -117,6 +117,7 @@
     <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\CommandQueue.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\Renderer.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\SwapChain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="AeroEngine\src\renderer\CommandQueue.h" />
     <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h" />
     <ClInclude Include="AeroEngine\src\renderer\DXHelper.h" />
+    <ClInclude Include="AeroEngine\src\renderer\Renderer.h" />
     <ClInclude Include="AeroEngine\src\renderer\SwapChain.h" />
   </ItemGroup>
   <ItemGroup>

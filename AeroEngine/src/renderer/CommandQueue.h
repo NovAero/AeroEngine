@@ -8,7 +8,7 @@
 
 using namespace Microsoft::WRL;
 
-namespace AE::Renderer {
+namespace AE::Graphics {
 	class CommandQueue {
 	public:
 		CommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type);

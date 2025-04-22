@@ -3,7 +3,7 @@
 #include "Dx12Deps.h"
 #include "DXHelper.h"
 
-namespace AE::Renderer {
+namespace AE::Graphics {
     class AERO_API Dx12Window : public Win32::W32Window {
     public:
 
@@ -13,7 +13,7 @@ namespace AE::Renderer {
 		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) override;
 
         virtual void OnInit() = 0;
-        virtual void OnUpdate() = 0;
+		virtual void OnUpdate() = 0;
         virtual void OnRender() = 0;
         virtual void OnDestroy() = 0;
 

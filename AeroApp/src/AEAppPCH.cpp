@@ -16,7 +16,7 @@ public:
 		Simulation::OnUpdate();
 	}
 	VOID Exit() {
-		Simulation::OnDestroy();
+		Simulation::Exit();
 	}
 };
 //Interfacing for entry point... Magic!!

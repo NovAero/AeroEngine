@@ -1,16 +1,16 @@
 #pragma once
 
-#include "renderer/Dx12Window.h"
+#include "renderer/Renderer.h"
 
-using namespace Microsoft::WRL;
-using namespace DirectX;
+//Aero engine Simulation class is the main loadbearing class,
+//containing renderer, game logic, handlers, input systems, etc.
 
 namespace AE {
 
-	class AERO_API Simulation : public Win32::IAEApplication, public AE::Renderer::Dx12Window {
+	class AERO_API Simulation : public std::enable_shared_from_this<Simulation>, public Win32::IAEApplication {
 	public:
 		Simulation();
-		~Simulation();
+		virtual ~Simulation();
 		
 		virtual VOID Register() override;
 		virtual VOID Exit() override;
@@ -20,20 +20,24 @@ namespace AE {
 		virtual void OnRender();
 		virtual void OnDestroy();
 
-		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+		virtual void LoadContent();
+		virtual void UnloadContent();
 
-		//virtual VOID OnKeyPressed(/*Keyeventargs& */);
-		//virtual VOID OnKeyReleased();
-		//virtual VOID OnMouseMove();
-		//virtual VOID OnMouseButtonPressed();
-		//virtual VOID OnMouseWheel();
+	protected:
 
-		//virtual VOID OnResize();
-		//virtual VOID OnWindowDestroy();
+		virtual VOID OnKeyPressed(/*Keyeventargs& */);
+		virtual VOID OnKeyReleased();
+		virtual VOID OnMouseMove();
+		virtual VOID OnMouseButtonPressed();
+		virtual VOID OnMouseWheel();
+
+		virtual VOID OnResize();
+		virtual VOID OnWindowDestroy();
 
 	private:
 
-
+		static Graphics::Renderer* s_RenderManager;
 
 	};
+
 }

@@ -2,7 +2,7 @@
 #include "Dx12Window.h"
 #include <dxgidebug.h>
 
-namespace AE::Renderer {
+namespace AE::Graphics {
 
     Dx12Window::Dx12Window(WSTRING title, HICON icon, Win32::EWindowType type)
         : Win32::W32Window(title, icon, type)
@@ -12,7 +12,7 @@ namespace AE::Renderer {
         m_AssetsPath = assetsPath;
     }
 
-    AE::Renderer::Dx12Window::~Dx12Window()
+    AE::Graphics::Dx12Window::~Dx12Window()
     {
     }
 
@@ -20,7 +20,7 @@ namespace AE::Renderer {
     {
         if (m_Initialised) {
             switch (message) {
-            case WM_PAINT:          { OnUpdate(); OnRender(); }   break;
+            case WM_PAINT:          { OnUpdate(); OnRender(); }  break;
             case WM_SYSKEYDOWN:
             case WM_KEYDOWN:
             {
@@ -233,7 +233,7 @@ namespace AE::Renderer {
 
     }
 
-    ComPtr<ID3D12DescriptorHeap> AE::Renderer::Dx12Window::CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT numDescriptors)
+    ComPtr<ID3D12DescriptorHeap> AE::Graphics::Dx12Window::CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT numDescriptors)
     {
         ComPtr<ID3D12DescriptorHeap> descriptorHeap;
 

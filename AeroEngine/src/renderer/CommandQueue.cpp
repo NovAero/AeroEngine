@@ -2,7 +2,7 @@
 #include "CommandQueue.h"
 #include "DXHelper.h"
 
-namespace AE::Renderer {
+namespace AE::Graphics {
 
 	CommandQueue::CommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type)
 		: m_fenceValue(0), m_commandListType(type), m_d3d12Device(device)

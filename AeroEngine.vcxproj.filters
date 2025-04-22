@@ -135,6 +135,9 @@
     <ClCompile Include="AeroEngine\src\renderer\SwapChain.cpp">
       <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\Renderer.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AeroEngine\src\AEPCH.h">
@@ -204,6 +207,9 @@
       <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
     <ClInclude Include="AeroEngine\src\renderer\SwapChain.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\Renderer.h">
       <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
   </ItemGroup>
