@@ -8,6 +8,8 @@
 #include "common/Time.h"
 #include "core/PerGameSettings.h"
 
+#include "Dx12Deps.h"
+
 #ifdef WIN32
 
 #pragma warning (disable : 4251)

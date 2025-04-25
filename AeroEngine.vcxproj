@@ -101,6 +101,7 @@
     <ClCompile Include="AeroEngine\src\common\CmdLineArgs.cpp" />
     <ClCompile Include="AeroEngine\src\common\Logger.cpp" />
     <ClCompile Include="AeroEngine\src\common\Time.cpp" />
+    <ClCompile Include="AeroEngine\src\common\Utility.cpp" />
     <ClCompile Include="AeroEngine\src\core\Core.cpp" />
     <ClCompile Include="AeroEngine\src\core\CoreDefinitions.cpp" />
     <ClCompile Include="AeroEngine\src\core\CoreMinimal.cpp" />
@@ -114,8 +115,9 @@
     <ClCompile Include="AeroEngine\src\platform\_WIN32\SubObject.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\w32Caption.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\Win32Utils.cpp" />
-    <ClCompile Include="AeroEngine\src\renderer\CommandAllocator.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\CommandAllocatorPool.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\CommandListManager.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\CommandQueue.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\Renderer.cpp" />
@@ -126,6 +128,7 @@
     <ClInclude Include="AeroEngine\src\common\CmdLineArgs.h" />
     <ClInclude Include="AeroEngine\src\common\Logger.h" />
     <ClInclude Include="AeroEngine\src\common\Time.h" />
+    <ClInclude Include="AeroEngine\src\common\Utility.h" />
     <ClInclude Include="AeroEngine\src\core\Core.h" />
     <ClInclude Include="AeroEngine\src\core\CoreDefinitions.h" />
     <ClInclude Include="AeroEngine\src\core\CoreMinimal.h" />
@@ -140,8 +143,9 @@
     <ClInclude Include="AeroEngine\src\platform\_WIN32\w32Caption.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\Win32Utils.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\WinEntry.h" />
-    <ClInclude Include="AeroEngine\src\renderer\CommandAllocator.h" />
+    <ClInclude Include="AeroEngine\src\renderer\CommandAllocatorPool.h" />
     <ClInclude Include="AeroEngine\src\renderer\CommandList.h" />
+    <ClInclude Include="AeroEngine\src\renderer\CommandListManager.h" />
     <ClInclude Include="AeroEngine\src\renderer\CommandQueue.h" />
     <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h" />
     <ClInclude Include="AeroEngine\src\renderer\DXHelper.h" />

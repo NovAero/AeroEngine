@@ -73,6 +73,18 @@ namespace AE {
 		
 	}
 
+	bool Simulation::LoadContent()
+	{
+		s_RenderManager->LoadContent();
+		return true;
+	}
+
+	bool Simulation::UnloadContent()
+	{
+		s_RenderManager->UnloadContent();
+		return false;
+	}
+
 	VOID Simulation::OnKeyPressed()
 	{
 	}

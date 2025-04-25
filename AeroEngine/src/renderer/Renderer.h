@@ -1,7 +1,9 @@
 #pragma once
 
 #include "renderer/Dx12Window.h"
+#include "Dx12Deps.h"
 
+using namespace DirectX;
 
 namespace AE::Graphics {
 
@@ -18,9 +20,18 @@ namespace AE::Graphics {
 		virtual void OnDestroy();
 
 		virtual void LoadContent();
+		void WaitForPreviousFrame();
 		virtual void UnloadContent();
 
+		void PopulateCommandList();
+
 		virtual	LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+		struct Vertex
+		{
+			XMFLOAT3 position;
+			XMFLOAT4 color;
+		};
 
 	};
 }

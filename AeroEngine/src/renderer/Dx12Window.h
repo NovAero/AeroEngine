@@ -2,8 +2,12 @@
 
 #include "Dx12Deps.h"
 #include "DXHelper.h"
+#include "CommandQueue.h"
 
 namespace AE::Graphics {
+
+	using namespace std;
+
     class AERO_API Dx12Window : public Win32::W32Window {
     public:
 
@@ -22,11 +26,13 @@ namespace AE::Graphics {
 
 	public:
 
-		static const UINT						s_FrameCount = 3;
+		static const UINT						s_FrameCount = 2;
 
     protected:
         
         WSTRING									GetAssetFullPath(LPCWSTR assetName);
+
+		VOID									InitialisePipeline(D3D12_COMMAND_LIST_TYPE clType, D3D12_DESCRIPTOR_HEAP_TYPE dhType);
 
 		VOID									EnableDebugLayer();
         ComPtr<IDXGIAdapter4>					GetHardwareAdapter(bool useWarp);
@@ -48,7 +54,6 @@ namespace AE::Graphics {
 		BOOL									CheckTearingSupport();
 		VOID									ParseCmdLineArgs();
 
-		
 
         BOOL									m_UseWarpDevice = FALSE;
 		WSTRING									m_AssetsPath;
@@ -66,6 +71,10 @@ namespace AE::Graphics {
 		ComPtr<ID3D12DescriptorHeap>			m_rtvHeap;
 		UINT									m_rtvDescriptorSize;
 		UINT									m_currentBufferIndex;
+
+
+		ComPtr<ID3D12PipelineState> m_pipelineState;
+		ComPtr<ID3D12RootSignature> m_rootSignature;
 
 		// App resources.
 		ComPtr<ID3D12Resource>					m_vertexBuffer;

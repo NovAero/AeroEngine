@@ -6,6 +6,8 @@
 	#define AERO_API __declspec(dllimport)
 #endif
 
+#include "common/Utility.h"
+
 #define MAX_NAME_STRING 256
 #define HInstance() GetModuleHandle(NULL)
 

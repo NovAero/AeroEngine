@@ -123,7 +123,7 @@
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp">
       <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
-    <ClCompile Include="AeroEngine\src\renderer\CommandAllocator.cpp">
+    <ClCompile Include="AeroEngine\src\renderer\CommandAllocatorPool.cpp">
       <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
     <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp">
@@ -140,6 +140,12 @@
     </ClCompile>
     <ClCompile Include="AeroEngine\src\engine\GameTest.cpp">
       <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\CommandListManager.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\common\Utility.cpp">
+      <Filter>Source\Private\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +206,7 @@
     <ClInclude Include="AeroEngine\src\renderer\DXHelper.h">
       <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
-    <ClInclude Include="AeroEngine\src\renderer\CommandAllocator.h">
+    <ClInclude Include="AeroEngine\src\renderer\CommandAllocatorPool.h">
       <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
     <ClInclude Include="AeroEngine\src\renderer\CommandList.h">
@@ -217,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="AeroEngine\src\engine\GameTest.h">
       <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\CommandListManager.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\common\Utility.h">
+      <Filter>Source\Public\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

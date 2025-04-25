@@ -20,8 +20,8 @@ namespace AE {
 		virtual void OnRender();
 		virtual void OnDestroy();
 
-		virtual bool LoadContent() = 0;
-		virtual bool UnloadContent() = 0;
+		virtual bool LoadContent();
+		virtual bool UnloadContent();
 
 	protected:
 

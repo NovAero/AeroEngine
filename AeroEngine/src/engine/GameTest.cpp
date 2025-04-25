@@ -31,11 +31,11 @@ static WORD g_Indicies[36] =
 };
 
 GameTest::GameTest(const WSTRING name, int width, int height, bool vSync)
-    : super(name, width, height, vSync),
-    m_ScissorRect(CD3DX12_RECT(0,0,LONG_MAX, LONG_MAX)),
-    m_Viewport(CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(width), static_cast<float>(height))),
-    m_FoV(45.0),
-    m_ContentLoaded(false)
+    //: super(name, width, height, vSync),
+    //m_ScissorRect(CD3DX12_RECT(0,0,LONG_MAX, LONG_MAX)),
+    //m_Viewport(CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(width), static_cast<float>(height))),
+    //m_FoV(45.0),
+    //m_ContentLoaded(false)
 {
     
 }
@@ -43,15 +43,52 @@ GameTest::GameTest(const WSTRING name, int width, int height, bool vSync)
 bool GameTest::LoadContent()
 {
     auto device = super::s_RenderManager->Device();
-    auto commandQueue = Application::Get().GetCommandQueue(D3D12_COMMAND_LIST_TYPE_COPY);
-    auto commandList = commandQueue->GetCommandList();
+   // auto commandQueue 
+   // auto commandList = commandQueue->GetCommandList();
 
+    return false;
+}
 
+bool GameTest::UnloadContent()
+{
+    return false;
+}
+
+void GameTest::OnUpdate()
+{
+}
+
+void GameTest::OnRender()
+{
+}
+
+void GameTest::OnKeyPressed()
+{
+}
+
+void GameTest::OnMouseWheel()
+{
+}
+
+void GameTest::OnResize()
+{
+}
+
+void GameTest::TransitionResource(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList, Microsoft::WRL::ComPtr<ID3D12Resource> resource, D3D12_RESOURCE_STATES beforeState, D3D12_RESOURCE_STATES afterState)
+{
+}
+
+void GameTest::ClearRTV(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList, D3D12_CPU_DESCRIPTOR_HANDLE rtv, FLOAT* clearColor)
+{
+}
+
+void GameTest::ClearDepth(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList, D3D12_CPU_DESCRIPTOR_HANDLE dsv, FLOAT depth)
+{
 }
 
 void GameTest::UpdateBufferResource(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList, ID3D12Resource** pDestinationResource, ID3D12Resource** pIntermediateResource, size_t numElements, size_t elementSize, const void* bufferData, D3D12_RESOURCE_FLAGS flags)
 {
-    auto device = super::s_RenderManager->Device();
+   /* auto device = super::s_RenderManager->Device();
 
     size_t bufferSize = numElements * elementSize;
 
@@ -80,5 +117,10 @@ void GameTest::UpdateBufferResource(Microsoft::WRL::ComPtr<ID3D12GraphicsCommand
         UpdateSubresources(commandList.Get(),
             *pDestinationResource, *pIntermediateResource,
             0, 0, 1, &subresourceData);
-    }
+    }*/
+    
+}
+
+void GameTest::ResizeDepthBuffer(int width, int height)
+{
 }

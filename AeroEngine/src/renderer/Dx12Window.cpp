@@ -6,6 +6,7 @@ namespace AE::Graphics {
 
     Dx12Window::Dx12Window(WSTRING title, HICON icon, Win32::EWindowType type)
         : Win32::W32Window(title, icon, type)
+        
     {
         WCHAR assetsPath[512];
         GetAssetsPath(assetsPath, _countof(assetsPath));
@@ -64,6 +65,33 @@ namespace AE::Graphics {
     WSTRING Dx12Window::GetAssetFullPath(LPCWSTR assetName)
     {
         return m_AssetsPath + assetName;
+    }
+
+    VOID Dx12Window::InitialisePipeline(D3D12_COMMAND_LIST_TYPE clType, D3D12_DESCRIPTOR_HEAP_TYPE dhType)
+    {
+        ComPtr<IDXGIAdapter4> dxgiAdapter4 = GetHardwareAdapter(m_UseWarpDevice);
+        m_device = CreateDevice(dxgiAdapter4);
+
+        m_commandQueue = CreateCommandQueue(m_device, clType);
+
+        m_swapChain = CreateSwapChain(Handle(), m_commandQueue, Size().cx, Size().cy, s_FrameCount);
+        m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
+
+        m_rtvHeap = CreateDescriptorHeap(m_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, s_FrameCount);
+        m_rtvDescriptorSize = m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+
+        UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
+
+        for (int i = 0; i < s_FrameCount; ++i) {
+            m_commandAllocators[i] = CreateCommandAllocator(m_device, D3D12_COMMAND_LIST_TYPE_DIRECT);
+        }
+
+        m_commandList = CreateCommandList(m_device, m_commandAllocators[m_currentBufferIndex], D3D12_COMMAND_LIST_TYPE_DIRECT);
+
+        m_fence = CreateFence(m_device);
+        m_fenceEvent = CreateEventHandle();
+
+        m_Initialised = TRUE;
     }
 
     VOID Dx12Window::EnableDebugLayer()
@@ -347,6 +375,7 @@ namespace AE::Graphics {
             UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
         }
     }
+
     VOID Dx12Window::SetFullscreen(BOOL fullscreen)
     {
         if (m_fullscreen != fullscreen) {
