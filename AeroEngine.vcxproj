@@ -116,11 +116,14 @@
     <ClCompile Include="AeroEngine\src\platform\_WIN32\w32Caption.cpp" />
     <ClCompile Include="AeroEngine\src\platform\_WIN32\Win32Utils.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\CommandAllocatorPool.cpp" />
-    <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\CommandListManager.cpp" />
-    <ClCompile Include="AeroEngine\src\renderer\CommandQueue.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\DescriptorHeap.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\Dx12Window.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\DynamicDescriptorHeap.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\GraphicsCommon.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\GraphicsCore.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\Renderer.cpp" />
+    <ClCompile Include="AeroEngine\src\renderer\RootSigniature.cpp" />
     <ClCompile Include="AeroEngine\src\renderer\SwapChain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,12 +147,15 @@
     <ClInclude Include="AeroEngine\src\platform\_WIN32\Win32Utils.h" />
     <ClInclude Include="AeroEngine\src\platform\_WIN32\WinEntry.h" />
     <ClInclude Include="AeroEngine\src\renderer\CommandAllocatorPool.h" />
-    <ClInclude Include="AeroEngine\src\renderer\CommandList.h" />
     <ClInclude Include="AeroEngine\src\renderer\CommandListManager.h" />
-    <ClInclude Include="AeroEngine\src\renderer\CommandQueue.h" />
+    <ClInclude Include="AeroEngine\src\renderer\DescriptorHeap.h" />
     <ClInclude Include="AeroEngine\src\renderer\Dx12Window.h" />
     <ClInclude Include="AeroEngine\src\renderer\DXHelper.h" />
+    <ClInclude Include="AeroEngine\src\renderer\DynamicDescriptorHeap.h" />
+    <ClInclude Include="AeroEngine\src\renderer\GraphicsCommon.h" />
+    <ClInclude Include="AeroEngine\src\renderer\GraphicsCore.h" />
     <ClInclude Include="AeroEngine\src\renderer\Renderer.h" />
+    <ClInclude Include="AeroEngine\src\renderer\RootSigniature.h" />
     <ClInclude Include="AeroEngine\src\renderer\SwapChain.h" />
   </ItemGroup>
   <ItemGroup>

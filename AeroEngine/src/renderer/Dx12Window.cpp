@@ -70,26 +70,33 @@ namespace AE::Graphics {
     VOID Dx12Window::InitialisePipeline(D3D12_COMMAND_LIST_TYPE clType, D3D12_DESCRIPTOR_HEAP_TYPE dhType)
     {
         ComPtr<IDXGIAdapter4> dxgiAdapter4 = GetHardwareAdapter(m_UseWarpDevice);
-        m_device = CreateDevice(dxgiAdapter4);
+        ComPtr<ID3D12Device2> device = CreateDevice(dxgiAdapter4);
 
-        m_commandQueue = CreateCommandQueue(m_device, clType);
+        m_commandQueue = CreateCommandQueue(device, clType);
 
         m_swapChain = CreateSwapChain(Handle(), m_commandQueue, Size().cx, Size().cy, s_FrameCount);
         m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
 
-        m_rtvHeap = CreateDescriptorHeap(m_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, s_FrameCount);
-        m_rtvDescriptorSize = m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+        m_rtvHeap = CreateDescriptorHeap(device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, s_FrameCount);
+        m_rtvDescriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
-        UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
+        UpdateRenderTargetViews(device, m_swapChain, m_rtvHeap);
 
         for (int i = 0; i < s_FrameCount; ++i) {
-            m_commandAllocators[i] = CreateCommandAllocator(m_device, D3D12_COMMAND_LIST_TYPE_DIRECT);
+            m_commandAllocators[i] = CreateCommandAllocator(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
         }
 
-        m_commandList = CreateCommandList(m_device, m_commandAllocators[m_currentBufferIndex], D3D12_COMMAND_LIST_TYPE_DIRECT);
+        m_commandList = CreateCommandList(device, m_commandAllocators[m_currentBufferIndex], D3D12_COMMAND_LIST_TYPE_DIRECT);
 
-        m_fence = CreateFence(m_device);
+        m_fence = CreateFence(device);
         m_fenceEvent = CreateEventHandle();
+
+        if (g_device != nullptr) {
+            g_device->Release();
+            g_device = nullptr;
+        }
+
+        g_device = device.Detach();
 
         m_Initialised = TRUE;
     }
@@ -372,7 +379,7 @@ namespace AE::Graphics {
 
             m_currentBufferIndex = m_swapChain->GetCurrentBackBufferIndex();
 
-            UpdateRenderTargetViews(m_device, m_swapChain, m_rtvHeap);
+            UpdateRenderTargetViews(g_device, m_swapChain, m_rtvHeap);
         }
     }
 

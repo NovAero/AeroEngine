@@ -2,11 +2,12 @@
 
 #include "Dx12Deps.h"
 #include "DXHelper.h"
-#include "CommandQueue.h"
 
 namespace AE::Graphics {
 
 	using namespace std;
+
+	ComPtr<ID3D12Device2> g_device;
 
     class AERO_API Dx12Window : public Win32::W32Window {
     public:
@@ -62,7 +63,6 @@ namespace AE::Graphics {
 		// Pipeline objects.
 		D3D12_VIEWPORT							m_viewport;
 		D3D12_RECT								m_scissorRect;
-		ComPtr<ID3D12Device2>					m_device;
 		ComPtr<ID3D12CommandQueue>				m_commandQueue;
 		ComPtr<IDXGISwapChain4>					m_swapChain;
 		ComPtr<ID3D12Resource>					m_backBuffers[s_FrameCount];

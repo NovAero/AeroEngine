@@ -126,12 +126,6 @@
     <ClCompile Include="AeroEngine\src\renderer\CommandAllocatorPool.cpp">
       <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
-    <ClCompile Include="AeroEngine\src\renderer\CommandList.cpp">
-      <Filter>Source\Renderer\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="AeroEngine\src\renderer\CommandQueue.cpp">
-      <Filter>Source\Renderer\Private</Filter>
-    </ClCompile>
     <ClCompile Include="AeroEngine\src\renderer\SwapChain.cpp">
       <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
@@ -146,6 +140,21 @@
     </ClCompile>
     <ClCompile Include="AeroEngine\src\common\Utility.cpp">
       <Filter>Source\Private\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\RootSigniature.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\DynamicDescriptorHeap.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\DescriptorHeap.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\GraphicsCore.cpp">
+      <Filter>Source\Renderer\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroEngine\src\renderer\GraphicsCommon.cpp">
+      <Filter>Source\Renderer\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,12 +218,6 @@
     <ClInclude Include="AeroEngine\src\renderer\CommandAllocatorPool.h">
       <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
-    <ClInclude Include="AeroEngine\src\renderer\CommandList.h">
-      <Filter>Source\Renderer\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="AeroEngine\src\renderer\CommandQueue.h">
-      <Filter>Source\Renderer\Public</Filter>
-    </ClInclude>
     <ClInclude Include="AeroEngine\src\renderer\SwapChain.h">
       <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
@@ -229,6 +232,21 @@
     </ClInclude>
     <ClInclude Include="AeroEngine\src\common\Utility.h">
       <Filter>Source\Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\DynamicDescriptorHeap.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\RootSigniature.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\DescriptorHeap.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\GraphicsCore.h">
+      <Filter>Source\Renderer\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroEngine\src\renderer\GraphicsCommon.h">
+      <Filter>Source\Renderer\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

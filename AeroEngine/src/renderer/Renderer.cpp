@@ -27,7 +27,7 @@ namespace AE::Graphics {
 
 	void Renderer::OnInit()
 	{
-
+        
 		EnableDebugLayer();
 		m_tearingSupported = CheckTearingSupport();
 
