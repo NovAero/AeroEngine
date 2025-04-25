@@ -25,7 +25,7 @@ namespace AE::Graphics {
 	bool IsDeviceIntel(ID3D12Device* device);
 	*/
 
-
+	//This is declared in Dx12Window::InitialisePipeline
 	extern ComPtr<ID3D12Device2> g_Device;
 	extern CommandListManager g_CommandManager;
 	extern ContextManager g_ContextManager;

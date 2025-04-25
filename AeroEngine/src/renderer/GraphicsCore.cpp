@@ -10,7 +10,6 @@ namespace AE::Graphics {
 	bool g_bTypedUAVLoadSupport_R11G11B10_FLOAT = false;
 	bool g_bTypedUAVLoadSupport_R16G16B16A16_FLOAT = false;
 
-	ComPtr<ID3D12Device2> g_Device = nullptr;
 	CommandListManager g_CommandManager;
 	ContextManager g_ContextManager;
 

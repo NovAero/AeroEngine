@@ -7,7 +7,7 @@ namespace AE::Graphics {
 
 	using namespace std;
 
-	ComPtr<ID3D12Device2> g_device;
+	ComPtr<ID3D12Device2> g_Device;
 
     class AERO_API Dx12Window : public Win32::W32Window {
     public:
@@ -93,7 +93,7 @@ namespace AE::Graphics {
 
     public:
 
-		ComPtr<ID3D12Device2> Device()	{ return m_device; }
+		ComPtr<ID3D12Device2> Device()	{ return g_Device; }
         BOOL WarpDevice()               { return m_UseWarpDevice; }
 
     public:

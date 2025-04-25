@@ -91,12 +91,12 @@ namespace AE::Graphics {
         m_fence = CreateFence(device);
         m_fenceEvent = CreateEventHandle();
 
-        if (g_device != nullptr) {
-            g_device->Release();
-            g_device = nullptr;
+        if (g_Device != nullptr) {
+            g_Device->Release();
+            g_Device = nullptr;
         }
 
-        g_device = device.Detach();
+        g_Device = device.Detach();
 
         m_Initialised = TRUE;
     }

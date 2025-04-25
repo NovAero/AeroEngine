@@ -63,7 +63,7 @@ namespace AE::Graphics {
 		Flush(m_commandQueue, m_fence, m_fenceValue, m_fenceEvent);
 		m_fence->Release();
 
-		m_device->Release();
+		g_device->Release();
 
 		m_commandQueue->Release();
 
@@ -135,7 +135,7 @@ namespace AE::Graphics {
             ComPtr<ID3DBlob> signature;
             ComPtr<ID3DBlob> error;
             ThrowIfFailed(D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error));
-            ThrowIfFailed(m_device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_rootSignature)));
+            ThrowIfFailed(g_device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_rootSignature)));
         }
 
         // Create the pipeline state, which includes compiling and loading shaders.
@@ -176,11 +176,11 @@ namespace AE::Graphics {
             psoDesc.NumRenderTargets = 1;
             psoDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
             psoDesc.SampleDesc.Count = 1;
-            ThrowIfFailed(m_device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_pipelineState)));
+            ThrowIfFailed(g_device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_pipelineState)));
         }
 
         // Create the command list.
-        ThrowIfFailed(m_device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, m_commandAllocators[0].Get(), m_pipelineState.Get(), IID_PPV_ARGS(&m_commandList)));
+        ThrowIfFailed(g_device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, m_commandAllocators[0].Get(), m_pipelineState.Get(), IID_PPV_ARGS(&m_commandList)));
 
         // Command lists are created in the recording state, but there is nothing
         // to record yet. The main loop expects it to be closed, so close it now.
@@ -206,7 +206,7 @@ namespace AE::Graphics {
             auto hProp = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
             auto desc = CD3DX12_RESOURCE_DESC::Buffer(vertexBufferSize);
 
-            ThrowIfFailed(m_device->CreateCommittedResource(
+            ThrowIfFailed(g_device->CreateCommittedResource(
                 &hProp,
                 D3D12_HEAP_FLAG_NONE,
                 &desc,
@@ -229,7 +229,7 @@ namespace AE::Graphics {
 
         // Create synchronization objects and wait until assets have been uploaded to the GPU.
         {
-            ThrowIfFailed(m_device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_fence)));
+            ThrowIfFailed(g_device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_fence)));
             m_fenceValue = 1;
 
             // Create an event handle to use for frame synchronization.
