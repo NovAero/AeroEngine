@@ -20,7 +20,7 @@ namespace AE {
 		Logger::PrintLog(L"GameName: %s\n", PerGameSettings::GameName());
 		Logger::PrintLog(L"Boot Time: %s\n", PerGameSettings::BootTime());
 		Logger::PrintLog(L"Engine Mode: %s\n", Engine::EngineModeToString().c_str());
-
+		
 		Win32::W32Window::RegisterNewClass();
 		Win32::W32Window::Initialise();
 	}

@@ -8,6 +8,8 @@
 #include "common/Time.h"
 #include "core/PerGameSettings.h"
 
+#include "core/Matrix3x3.h"
+
 #ifdef WIN32
 
 #pragma warning (disable : 4251)

@@ -4,6 +4,7 @@
 #include "engine/SplashScreen.h"
 #include "engine/Simulation.h"
 
+
 //CoreMinimal disables warning C4251 - can be found through AEPCH.h -> Core.h -> CoreMinimal.h
 
 /*----------------------------------------------*/
@@ -25,21 +26,21 @@ INT CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	Logger logger;
 
 	EntryApp->Register();
-	EntryApp->Initialise();
+	//EntryApp->Initialise();
 
-	MSG msg = { 0 };
-	while (msg.message != WM_QUIT) {
-		//if there are any window messages, process them
-		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		else {
-			EntryApp->Update();
-		}
-	}
+	//MSG msg = { 0 };
+	//while (msg.message != WM_QUIT) {
+	//	//if there are any window messages, process them
+	//	if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
+	//		TranslateMessage(&msg);
+	//		DispatchMessage(&msg);
+	//	}
+	//	else {
+	//		EntryApp->Update();
+	//	}
+	//}
 
-	EntryApp->Exit();
+	//EntryApp->Exit();
 
 	return 0;
 }

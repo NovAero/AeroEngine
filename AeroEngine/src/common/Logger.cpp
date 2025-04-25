@@ -52,8 +52,6 @@ WSTRING Logger::LogDirectory()
 	wcscat_s(path, L"\\Log");
 	CreateDirectory(path, NULL);
 
-	if (AppDataLocal) delete[] AppDataLocal;
-
 	return path;
 }
 
